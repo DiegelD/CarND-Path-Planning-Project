@@ -1,8 +1,8 @@
 #ifndef BEHAVIOURPLANNER_H
 #define BEHAVIOURPLANNER_H
 
-#include "Car.h"
 #include <vector>
+using std::vector;
 
 class BehaviourPlanner
 {

@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cmath>
 
+using namespace std;
+
 BehaviourPlanner::BehaviourPlanner()
 {
     bool lane_free_one_ = false;
