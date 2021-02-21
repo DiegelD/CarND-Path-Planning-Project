@@ -14,7 +14,7 @@ BehaviourPlanner::BehaviourPlanner()
 
 BehaviourPlanner::~BehaviourPlanner(){}
 
-void BehaviourPlanner::lane_check(auto sensor_fusion, Car &car, int prev_size)
+void BehaviourPlanner::lane_check(vector<vector<double>> sensor_fusion, Car &car, int prev_size)
 {
     //find ref_v to use
     for (int i = 0; i < sensor_fusion.size(); i++)
@@ -36,7 +36,7 @@ void BehaviourPlanner::lane_check(auto sensor_fusion, Car &car, int prev_size)
                 //ref_vel = 29.5; // MPH
                 bool KeepLane = false;
                 // Start checking the lanes around us
-                self.lane_check_around_(auto sensor_fusion, Car &car, int prev_size);
+                self.lane_check_around_(vector<vector<double>> sensor_fusion, Car & car, int prev_size);
             }
             else{ 
                 bool KeepLane = true;
@@ -44,7 +44,7 @@ void BehaviourPlanner::lane_check(auto sensor_fusion, Car &car, int prev_size)
         }
     }
 }
-void BehaviourPlanner::lane_check_around_(auto sensor_fusion, Car &car, int prev_size)
+void BehaviourPlanner::lane_check_around_(vector<vector<double>> sensor_fusion, Car &car, int prev_size)
 {
     for (int i = 0; i < sensor_fusion.size(); i++)
     {
