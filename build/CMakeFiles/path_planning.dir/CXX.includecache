@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/DanielD/Documents/99_Studium/03_LebenslangesLernen/SelfDriving_Eng/12_CarND-Path-Planning-Project-master/src/BehaviourPlanner.cpp
+BehaviourPlanner.h
+/Users/DanielD/Documents/99_Studium/03_LebenslangesLernen/SelfDriving_Eng/12_CarND-Path-Planning-Project-master/src/BehaviourPlanner.h
+algorithm
+-
+iostream
+-
+cmath
+-
+
+/Users/DanielD/Documents/99_Studium/03_LebenslangesLernen/SelfDriving_Eng/12_CarND-Path-Planning-Project-master/src/BehaviourPlanner.h
+vector
+-
+Car.h
+/Users/DanielD/Documents/99_Studium/03_LebenslangesLernen/SelfDriving_Eng/12_CarND-Path-Planning-Project-master/src/Car.h
+
+/Users/DanielD/Documents/99_Studium/03_LebenslangesLernen/SelfDriving_Eng/12_CarND-Path-Planning-Project-master/src/Car.h
+string
+-
+vector
+-
+
