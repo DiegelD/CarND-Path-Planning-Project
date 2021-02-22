@@ -15,6 +15,7 @@
 using nlohmann::json;
 using std::string;
 using std::vector;
+using namespace std;
 
 int main()
 {
@@ -224,6 +225,17 @@ int main()
           ptsy.push_back(next_wp1[1]);
           ptsy.push_back(next_wp2[1]);
 
+          cout << "Debugging" << endl;
+          cout << "ptsx.size               " << ptsx.size() << " " << endl;
+          cout << "ptsy.size               " << ptsy.size() << " " << endl;
+          cout << "ptsx                    " << endl;
+          for (std::vector<double>::const_iterator i = ptsx.begin(); i != ptsx.end(); ++i)
+            std::cout << *i << ' ';
+
+          cout << "ptsy                    " << endl;
+          for (std::vector<double>::const_iterator c = ptsy.begin(); c != ptsy.end(); ++c)
+            std::cout << *c << ' ';
+
           for (int i = 0; i < ptsx.size(); i++)
           {
             //shift car reference angle to 0 degrees
@@ -233,12 +245,11 @@ int main()
             ptsx[i] = (shift_x * cos(0 - ref_yaw) - shift_y * sin(0 - ref_yaw));
             ptsy[i] = (shift_x * sin(0 - ref_yaw) + shift_y * cos(0 - ref_yaw));
           }
-
           // create a spline
           tk::spline s;
 
           // set(x,y)points to the spline
-          s.set_points(ptsx, ptsy);
+         s.set_points(ptsx, ptsy);
 
           // Define the actual (x,y) points we will use for the planer
           vector<double> next_x_vals;
