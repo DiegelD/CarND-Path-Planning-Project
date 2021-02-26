@@ -13,7 +13,7 @@ private:
     bool lane_free_two_;
     bool lane_free_three_;
 
-    void lane_check_around_( vector<vector<double> > sensor_fusion, Car &car, int prev_size);
+    void lane_check_around_( vector<vector<double> > sensor_fusion, Car car, int prev_size);
 
 public:
     BehaviourPlanner();
@@ -21,8 +21,8 @@ public:
 
     bool KeepLane;
     // vector<Vehicle::State> get_sucessor_State(Vehicle &vehicle);
-    void update(Car &car);
-    void lane_check( vector<vector<double> > sensor_fusion, Car &car, int prev_size);
+    void update(Car car);
+    void lane_check( vector<vector<double> > sensor_fusion, Car car, int prev_size);
 };
 
 #endif

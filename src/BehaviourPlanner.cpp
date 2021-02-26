@@ -1,10 +1,8 @@
 #include "BehaviourPlanner.h"
 
-
 #include <algorithm>
 #include <iostream>
 #include <cmath>
-
 
 using namespace std;
 
@@ -13,19 +11,56 @@ BehaviourPlanner::BehaviourPlanner()
     bool lane_free_one_ = false;
     bool lane_free_two_ = false;
     bool lane_free_three_ = false;
-    bool KeepLane = "true";
+    bool KeepLane = true;
 }
 
-BehaviourPlanner::~BehaviourPlanner(){}
+BehaviourPlanner::~BehaviourPlanner() {}
 
-void BehaviourPlanner::lane_check( vector<vector<double> > sensor_fusion,Car &car, int prev_size)
+void BehaviourPlanner::lane_check(vector<vector<double>> sensor_fusion, Car car, int prev_size)
 {
+    cout << "Entered Behaviour Planer lane check               " << endl;
     //find ref_v to use
     for (int i = 0; i < sensor_fusion.size(); i++)
     {
         // car is in my lane
         float d = sensor_fusion[i][6];
         if (d < (2 + 4 * car.lane + 2) && d > (2 + 4 * car.lane - 2))
+        {
+            cout << "Entered Same Lane check              " << endl;
+            double vx = sensor_fusion[i][3];
+            double vy = sensor_fusion[i][4];
+            double check_speed = sqrt(vx * vx * vy * vy);
+            double check_car_s = sensor_fusion[i][5];
+
+            check_car_s += ((double)prev_size * .02 * check_speed); // IF using previous can project s value out
+            // check s value greater than mine and s gap
+
+            if ((check_car_s > car.s) && ((check_car_s - car.s) < 60))
+            {
+                // Do some logic here, lower reference velocity so we dont crash into the car infront of us, coud also flag to tray to change lanes or use ACC
+                //ref_vel = 29.5; // MPH
+
+                KeepLane = false;
+                cout << "Tooo Close Keep Lane should be false           " << KeepLane << endl;
+                // Start checking the lanes around us
+                this->lane_check_around_(sensor_fusion, car, prev_size);
+            }
+            else
+            {
+                KeepLane = true;
+            }
+        }
+    }
+}
+void BehaviourPlanner::lane_check_around_(vector<vector<double>> sensor_fusion, Car car, int prev_size)
+{
+    cout << "Entered Behaviour Planer lane check AROUND             " << endl;
+    for (int i = 0; i < sensor_fusion.size(); i++)
+    {
+        float d = sensor_fusion[i][6];
+        // 1 lane check
+
+        if (d < (2 + 4 * 1 + 2) && d > (2 + 4 * 1 - 2))
         {
             double vx = sensor_fusion[i][3];
             double vy = sensor_fusion[i][4];
@@ -38,93 +73,62 @@ void BehaviourPlanner::lane_check( vector<vector<double> > sensor_fusion,Car &ca
             {
                 // Do some logic here, lower reference velocity so we dont crash into the car infront of us, coud also flag to tray to change lanes or use ACC
                 //ref_vel = 29.5; // MPH
-                bool KeepLane = false;
-                // Start checking the lanes around us
-                this->lane_check_around_(sensor_fusion, car, prev_size);
+                lane_free_one_ = false;
             }
-            else{ 
-                bool KeepLane = true;
+            else
+            {
+                lane_free_one_ = true;
             }
+            // Output
+            cout << "lane_free_one                " << lane_free_one_ << " " << endl;
         }
-    }
-}
-void BehaviourPlanner::lane_check_around_( vector<vector<double> > sensor_fusion, Car &car, int prev_size)
-{
-    for (int i = 0; i < sensor_fusion.size(); i++)
-    {
-        float d = sensor_fusion[i][6];
-        // 1 lane check
-    
-            if (d < (2 + 4 * 1 + 2) && d > (2 + 4 * 1 - 2))
-            {
-                double vx = sensor_fusion[i][3];
-                double vy = sensor_fusion[i][4];
-                double check_speed = sqrt(vx * vx * vy * vy);
-                double check_car_s = sensor_fusion[i][5];
-
-                check_car_s += ((double)prev_size * .02 * check_speed); // IF using previous can project s value out
-                // check s value greater than mine and s gap
-                if ((check_car_s > car.s) && ((check_car_s - car.s) < 30))
-                {
-                    // Do some logic here, lower reference velocity so we dont crash into the car infront of us, coud also flag to tray to change lanes or use ACC
-                    //ref_vel = 29.5; // MPH
-                    lane_free_one_ = false;
-                }
-                else
-                {
-                    lane_free_one_ = true;
-                }
-                // Output
-                cout << "lane_free_one                " << lane_free_one_ << " " << endl;
-            }
         // Lane lane 2
-        
-            if (d < (2 + 4 * 2 + 2) && d > (2 + 4 * 2 - 2))
-            {
-                double vx = sensor_fusion[i][3];
-                double vy = sensor_fusion[i][4];
-                double check_speed = sqrt(vx * vx * vy * vy);
-                double check_car_s = sensor_fusion[i][5];
 
-                check_car_s += ((double)prev_size * .02 * check_speed); // IF using previous can project s value out
-                // check s value greater than mine and s gap
-                if ((check_car_s > car.s) && ((check_car_s - car.s) < 30))
-                {
-                    // Do some logic here, lower reference velocity so we dont crash into the car infront of us, coud also flag to tray to change lanes or use ACC
-                    //ref_vel = 29.5; // MPH
-                    lane_free_two_ = false;
-                }
-                else
-                {
-                    lane_free_two_ = true;
-                }
-                // Output
-                cout << "lane_free_two                " << lane_free_two_ << " " << endl;
+        if (d < (2 + 4 * 2 + 2) && d > (2 + 4 * 2 - 2))
+        {
+            double vx = sensor_fusion[i][3];
+            double vy = sensor_fusion[i][4];
+            double check_speed = sqrt(vx * vx * vy * vy);
+            double check_car_s = sensor_fusion[i][5];
+
+            check_car_s += ((double)prev_size * .02 * check_speed); // IF using previous can project s value out
+            // check s value greater than mine and s gap
+            if ((check_car_s > car.s) && ((check_car_s - car.s) < 30))
+            {
+                // Do some logic here, lower reference velocity so we dont crash into the car infront of us, coud also flag to tray to change lanes or use ACC
+                //ref_vel = 29.5; // MPH
+                lane_free_two_ = false;
             }
+            else
+            {
+                lane_free_two_ = true;
+            }
+            // Output
+            cout << "lane_free_two                " << lane_free_two_ << " " << endl;
+        }
         // Lane 3
-            if (d < (2 + 4 * 3 + 2) && d > (2 + 4 * 3 - 2))
-            {
-                double vx = sensor_fusion[i][3];
-                double vy = sensor_fusion[i][4];
-                double check_speed = sqrt(vx * vx * vy * vy);
-                double check_car_s = sensor_fusion[i][5];
+        if (d < (2 + 4 * 3 + 2) && d > (2 + 4 * 3 - 2))
+        {
+            double vx = sensor_fusion[i][3];
+            double vy = sensor_fusion[i][4];
+            double check_speed = sqrt(vx * vx * vy * vy);
+            double check_car_s = sensor_fusion[i][5];
 
-                check_car_s += ((double)prev_size * .02 * check_speed); // IF using previous can project s value out
-                // check s value greater than mine and s gap
-                if ((check_car_s > car.s) && ((check_car_s - car.s) < 30))
-                {
-                    // Do some logic here, lower reference velocity so we dont crash into the car infront of us, coud also flag to tray to change lanes or use ACC
-                    //ref_vel = 29.5; // MPH
-                    lane_free_three_ = false;
-        
-                }
-                else
-                {
-                    lane_free_three_ = true;
-                }
-                // Output
-                cout << "lane_free_three                " << lane_free_three_ << " " << endl;
+            check_car_s += ((double)prev_size * .02 * check_speed); // IF using previous can project s value out
+            // check s value greater than mine and s gap
+            if ((check_car_s > car.s) && ((check_car_s - car.s) < 30))
+            {
+                // Do some logic here, lower reference velocity so we dont crash into the car infront of us, coud also flag to tray to change lanes or use ACC
+                //ref_vel = 29.5; // MPH
+                lane_free_three_ = false;
             }
+            else
+            {
+                lane_free_three_ = true;
+            }
+            // Output
+            cout << "lane_free_three                " << lane_free_three_ << " " << endl;
+        }
     }
 }
 

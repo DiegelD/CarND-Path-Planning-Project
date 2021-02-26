@@ -57,10 +57,14 @@ int main()
   }
 
   BehaviourPlanner behaviour_planner;
+  //behaviour_planner.KeepLane = true;
   Car car;
+  car.lane = 1;
+  double ref_vel = 0; // mpH
+
   h.onMessage([&map_waypoints_x, &map_waypoints_y, &map_waypoints_s,
-               &map_waypoints_dx, &map_waypoints_dy, &behaviour_planner, &car](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length,
-                                                                               uWS::OpCode opCode) {
+               &map_waypoints_dx, &map_waypoints_dy, &behaviour_planner, &car, &ref_vel](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length,
+                                                                                         uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
     // The 4 signifies a websocket message
     // The 2 signifies a websocket event
@@ -86,7 +90,7 @@ int main()
           double car_d = j[1]["d"];
           double car_yaw = j[1]["yaw"];
           double car_speed = j[1]["speed"];
-          // Could be improved combined with the code up
+
           car.update(car_x,
                      car_y,
                      car_s,
@@ -115,55 +119,32 @@ int main()
           // Start lane
           // int lane = 1; -> Behaviour Planner
           // have a reference velocity to target
-          double ref_vel = 0; // mpH
+          //double ref_vel = 0; // mpH
 
           // bool too_close = false;
 
           int prev_size = previous_path_x.size();
 
-          // Including Sensor Fusion 
+          // Including Sensor Fusion
           if (prev_size > 0)
           {
             car.s = end_path_s;
           }
-          behaviour_planner.lane_check(sensor_fusion,car,prev_size);
 
-          /* ->>> Used in Behaviour Planner
-          //find ref_v to use
-          for (int i = 0; i < sensor_fusion.size(); i++)
-          {
-            // car is in my lane
-            float d = sensor_fusion[i][6];
-            if (d < (2 + 4 * lane + 2) && d > (2 + 4 * lane - 2))
-            {
-              double vx = sensor_fusion[i][3];
-              double vy = sensor_fusion[i][4];
-              double check_speed = sqrt(vx * vx * vy * vy);
-              double check_car_s = sensor_fusion[i][5];
+          behaviour_planner.lane_check(sensor_fusion, car, prev_size);
 
-              check_car_s += ((double)prev_size * .02 * check_speed); // IF using previous can project s value out
-              // check s value greater than mine and s gap
-              if ((check_car_s > car_s) && ((check_car_s - car_s) < 30))
-              {
-                // Do some logic here, lower reference velocity so we dont crash into the car infront of us, coud also flag to tray to change lanes or use ACC
-                //ref_vel = 29.5; // MPH
-                too_close = true;
-                if (lane > 0)
-                {
-                  lane = 0;
-                }
-              }
-            }
-          }
-          */
           //Behaviour Planer - >Could be better written. Lane change bevore 60 and to close at 30
-          if (!behaviour_planner.KeepLane)
+          cout << "Check Acceleeration ; behaviour_planner.KeepLane              " << behaviour_planner.KeepLane << endl;
+
+          if (behaviour_planner.KeepLane == false)
           {
-            ref_vel -= .224;
+            ref_vel -= .224 * 4;
+            cout << "Entered deacceleration                        " << ref_vel << " " << endl;
           }
           else if (ref_vel < 49.5)
           {
-            ref_vel += .224;
+            ref_vel += .224 * 3;
+            cout << "Entered acceleration                        " << ref_vel << " " << endl;
           }
 
           // Trajectory Planing
@@ -188,9 +169,13 @@ int main()
 
             ptsx.push_back(prev_car_x);
             ptsx.push_back(car.x);
+            //cout << "prev_car_x               " << prev_car_x << " " << endl;
+            //cout << "car.x               " << car.x << " " << endl;
 
             ptsy.push_back(prev_car_y);
             ptsy.push_back(car.y);
+            //cout << "prev_car_y              " << prev_car_y << " " << endl;
+            //cout << "car.y               " << car.y << " " << endl;
           }
           // Use the previous paths end points as starting reference
           else
@@ -212,7 +197,8 @@ int main()
             ptsy.push_back(ref_y);
           }
 
-          // In Freenet add evenly 30m spaced ahead of the starting reference
+          //cout << "car.s                         " << car.s << " " << endl;
+
           vector<double> next_wp0 = getXY(car.s + 30, (2 + 4 * car.lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
           vector<double> next_wp1 = getXY(car.s + 60, (2 + 4 * car.lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
           vector<double> next_wp2 = getXY(car.s + 90, (2 + 4 * car.lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
@@ -220,21 +206,21 @@ int main()
           ptsx.push_back(next_wp0[0]);
           ptsx.push_back(next_wp1[0]);
           ptsx.push_back(next_wp2[0]);
+          //cout << "next_wp0[0]               " << next_wp0[0] << " " << endl;
+          //cout << "next_wp1[0]               " << next_wp1[0] << " " << endl;
+          //cout << "next_wp2[0]               " << next_wp2[0] << " " << endl;
 
           ptsy.push_back(next_wp0[1]);
           ptsy.push_back(next_wp1[1]);
           ptsy.push_back(next_wp2[1]);
+          //cout << "next_wp0[1]               " << next_wp0[1] << " " << endl;
+          //cout << "next_wp1[1]               " << next_wp1[1] << " " << endl;
+          //cout << "next_wp2[1]               " << next_wp2[1] << " " << endl;
 
-          cout << "Debugging" << endl;
-          cout << "ptsx.size               " << ptsx.size() << " " << endl;
-          cout << "ptsy.size               " << ptsy.size() << " " << endl;
-          cout << "ptsx                    " << endl;
-          for (std::vector<double>::const_iterator i = ptsx.begin(); i != ptsx.end(); ++i)
-            std::cout << *i << ' ';
-
-          cout << "ptsy                    " << endl;
-          for (std::vector<double>::const_iterator c = ptsy.begin(); c != ptsy.end(); ++c)
-            std::cout << *c << ' ';
+          //cout << "Debugging" << endl;
+          //cout << "ptsx.size               " << ptsx.size() << " " << endl;
+          //cout << "ptsy.size               " << ptsy.size() << " " << endl;
+          //cout << "ptsx                    " << endl;
 
           for (int i = 0; i < ptsx.size(); i++)
           {
@@ -244,12 +230,15 @@ int main()
 
             ptsx[i] = (shift_x * cos(0 - ref_yaw) - shift_y * sin(0 - ref_yaw));
             ptsy[i] = (shift_x * sin(0 - ref_yaw) + shift_y * cos(0 - ref_yaw));
+            //cout << "ptsx[i]               " << ptsx[i] << " " << endl;
+            //cout << "ptsy[i]               " << ptsy[i] << " " << endl;
           }
+
           // create a spline
           tk::spline s;
 
           // set(x,y)points to the spline
-         s.set_points(ptsx, ptsy);
+          s.set_points(ptsx, ptsy);
 
           // Define the actual (x,y) points we will use for the planer
           vector<double> next_x_vals;
@@ -294,8 +283,6 @@ int main()
             next_x_vals.push_back(x_point);
             next_y_vals.push_back(y_point);
           }
-
-
 
           // End
           msgJson["next_x"] = next_x_vals;

@@ -23,6 +23,7 @@ public:
     //vector<string> sucessor_state();
 
     void update(double x_in, double y_in, double vx_in, double vy_in, double s_in, double d_in);
+    void info();
 };
 
 #endif
