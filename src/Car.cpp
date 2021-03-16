@@ -10,14 +10,17 @@ using namespace std;
 // Initializes Vehicle
 Car::Car()
 {
-    int lane = 1;
     double x = 0;
     double y = 0;
     double s = 0;
     double d = 0;
-    ;
     double yaw = 0;
     double speed = 0;
+    int lane = 1;
+    int indended_lane = 1;
+    double distance2goal = 1;
+    bool too_close = false;
+
 }
 
 Car::~Car()

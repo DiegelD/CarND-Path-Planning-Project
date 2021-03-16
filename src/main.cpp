@@ -57,9 +57,14 @@ int main()
   }
 
   BehaviourPlanner behaviour_planner;
-  //behaviour_planner.KeepLane = true;
+  
+  
   Car car;
   car.lane = 1;
+  car.indended_lane = 1;
+  car.distance2goal = max_s;
+  car.too_close = false;
+
   double ref_vel = 0; // mpH
 
   h.onMessage([&map_waypoints_x, &map_waypoints_y, &map_waypoints_s,
@@ -133,19 +138,66 @@ int main()
 
           behaviour_planner.lane_check(sensor_fusion, car, prev_size);
 
-          //Behaviour Planer - >Could be better written. Lane change bevore 60 and to close at 30
-          cout << "Check Acceleeration ; behaviour_planner.KeepLane              " << behaviour_planner.KeepLane << endl;
 
-          if (behaviour_planner.KeepLane == false)
+
+          //Behaviour Planer - >Could be better written. Lane change bevore 60 and to close at 30
+          cout << "Check Acceleeration ; Is a car infront             " << car.too_close << endl;
+          // Velocity adaption
+          if (car.too_close == true)
           {
-            ref_vel -= .224 * 4;
-            cout << "Entered deacceleration                        " << ref_vel << " " << endl;
+            if (ref_vel > 1) // No Back driving
+            {
+              ref_vel -= .224 * 4;
+              cout << "Entered deacceleration                        " << ref_vel << " " << endl;
+            }
           }
           else if (ref_vel < 49.5)
           {
             ref_vel += .224 * 3;
             cout << "Entered acceleration                        " << ref_vel << " " << endl;
           }
+
+
+          // Choosing the Lane
+          cout << "Current Lane             " << car.lane << endl;
+          if (car.too_close == true)
+          {
+              if(car.lane == 0){ // Car is on the very left lane
+                behaviour_planner.state = BehaviourPlanner::BP_State::PLCR;
+                cout << "Current Lane             " << car.lane << endl;
+                cout << "State Machine             " << behaviour_planner.state << endl;
+                if (behaviour_planner.lane_free_two == true)
+                {
+                  car.lane = 1; // Changing to the middle
+                  cout << "Changed to middle Lane (1)            " << car.lane << endl;
+                  }
+              }
+
+              if(car.lane == 1){
+                // Car is in the middle lane
+                behaviour_planner.state = BehaviourPlanner::BP_State::PLCL;
+                cout << "Current Lane             " << car.lane << endl;
+                cout << "State Machine             " << behaviour_planner.state << endl;
+                if (behaviour_planner.lane_free_one == true)
+                {
+                  car.lane = 0;
+                  cout << "Changed to middle Lane (0)            " << car.lane << endl;
+                }
+              }
+
+              if(car.lane == 2){
+                // Car is on the right lane ---> Not used now
+                behaviour_planner.state = BehaviourPlanner::BP_State::PLCL;
+                cout << "Current Lane             " << car.lane << endl;
+                cout << "State Machine             " << behaviour_planner.state << endl;
+                if (behaviour_planner.lane_free_two == true)
+                {
+                  car.lane = 2;
+                }
+              }
+          }
+
+          car.speed = ref_vel; // Prototyping use 
 
           // Trajectory Planing
           // Create a list of widely spaced (x,y) waypoints, evenly spaced at 30m

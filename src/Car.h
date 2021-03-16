@@ -16,6 +16,10 @@ public:
     double yaw;
     double speed;
     int lane;
+    int indended_lane;
+    int final_lane;
+    double distance2goal;
+    bool too_close;
 
     Car();
     ~Car();
