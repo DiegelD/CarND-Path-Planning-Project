@@ -1,10 +1,12 @@
 #ifndef CAR_H
 #define CAR_H
 
-
 #include <string>
 #include <vector>
 
+using std::string;
+using std::vector;
+using namespace std;
 
 class Car
 {
@@ -16,10 +18,11 @@ public:
     double yaw;
     double speed;
     int lane;
-    int indended_lane;
-    int final_lane;
-    double distance2goal;
+    int goal_lane;
     bool too_close;
+
+
+    string current_state;
 
     Car();
     ~Car();
@@ -28,6 +31,8 @@ public:
 
     void update(double x_in, double y_in, double vx_in, double vy_in, double s_in, double d_in);
     void info();
+    vector<string> successor_states();
+    string choose_next_state(Car &car, const vector<vector<double> > &sensor_fusion);
 };
 
 #endif

@@ -61,8 +61,8 @@ int main()
   
   Car car;
   car.lane = 1;
-  car.indended_lane = 1;
-  car.distance2goal = max_s;
+  // car.indended_lane = 1;
+ //  car.distance2goal = max_s;
   car.too_close = false;
 
   double ref_vel = 0; // mpH
@@ -116,29 +116,17 @@ int main()
 
           json msgJson;
 
-          /**
-           * TODO: define a path made up of (x,y) points that the car will visit
-           *   sequentially every .02 seconds
-           */
-
-          // Start lane
-          // int lane = 1; -> Behaviour Planner
-          // have a reference velocity to target
-          //double ref_vel = 0; // mpH
-
-          // bool too_close = false;
-
+          // Handling the time delay of 1-3 timesteps from the simulator
           int prev_size = previous_path_x.size();
-
-          // Including Sensor Fusion
           if (prev_size > 0)
           {
             car.s = end_path_s;
           }
 
           behaviour_planner.lane_check(sensor_fusion, car, prev_size);
-
-
+          car.successor_states();
+          car.current_state = car.choose_next_state(car, sensor_fusion);
+          cout << "Car. current State             " << car.current_state << endl;
 
           //Behaviour Planer - >Could be better written. Lane change bevore 60 and to close at 30
           cout << "Check Acceleeration ; Is a car infront             " << car.too_close << endl;
@@ -156,78 +144,105 @@ int main()
             ref_vel += .224 * 3;
             cout << "Entered acceleration                        " << ref_vel << " " << endl;
           }
-
-
           // Choosing the Lane
           cout << "Current Lane             " << car.lane << endl;
-          if (car.too_close == true)
-          {
-              if(car.lane == 0){ // Car is on the very left lane
-                behaviour_planner.state = BehaviourPlanner::BP_State::PLCR;
-                cout << "Current Lane             " << car.lane << endl;
-                cout << "State Machine             " << behaviour_planner.state << endl;
-                if (behaviour_planner.lane_free_two == true)
-                {
-                  car.lane = 1; // Changing to the middle
-                  cout << "Changed to middle Lane (1)            " << car.lane << endl;
-                  }
-              }
+          
 
-              if(car.lane == 1){
-                // Car is in the middle lane
-                behaviour_planner.state = BehaviourPlanner::BP_State::PLCL;
-                cout << "Current Lane             " << car.lane << endl;
-                cout << "State Machine             " << behaviour_planner.state << endl;
-                if (behaviour_planner.lane_free_one == true)
-                {
-                  car.lane = 0;
-                  cout << "Changed to middle Lane (0)            " << car.lane << endl;
-                }
+          if (car.lane == 0)
+          { // Car is on the very left lane
+            // cout << "Current Lane             " << car.lane << endl;
+            //cout << "State Machine             " << behaviour_planner.state << endl;
+            if(car.current_state.compare("PLCR"))
+            {
+              if (behaviour_planner.lane_free_two == true)
+              {
+                car.current_state = "LCR";
+                car.lane = 1; // Changing to the middle
+                cout << "Changed to middle Lane (1)            " << car.lane << endl;
               }
-
-              if(car.lane == 2){
-                // Car is on the right lane ---> Not used now
-                behaviour_planner.state = BehaviourPlanner::BP_State::PLCL;
-                cout << "Current Lane             " << car.lane << endl;
-                cout << "State Machine             " << behaviour_planner.state << endl;
-                if (behaviour_planner.lane_free_two == true)
-                {
-                  car.lane = 2;
-                }
-              }
+            }
+            else if (car.current_state.compare("PLCR"))
+            {
+              car.current_state = "KL";
+            }
           }
 
-          car.speed = ref_vel; // Prototyping use 
-
-          // Trajectory Planing
-          // Create a list of widely spaced (x,y) waypoints, evenly spaced at 30m
-          // Later we will interpolate there waypoints with a spline and fill in with more points
-
-          vector<double> ptsx;
-          vector<double> ptsy;
-
-          // reference x, y yaw states
-          // ether we weill reference the starting point as where the car is or at the previous path
-          double ref_x = car.x;
-          double ref_y = car.y;
-          double ref_yaw = deg2rad(car.yaw);
-
-          // if previous size is almost empty, use the car as starting reference
-          if (prev_size < 2)
+          if (car.lane == 1)
           {
-            // Use tow points that make the path tangent to the car
-            double prev_car_x = car.x - cos(car.yaw);
-            double prev_car_y = car.y - sin(car.yaw);
+            // Car is in the middle lane
+            //cout << "Current Lane             " << car.lane << endl;
+            // cout << "State Machine             " << behaviour_planner.state << endl;
+            if (car.current_state.compare("PLCL"))
+            {
+              if (behaviour_planner.lane_free_one == true)
+              {
+                car.current_state = "LCL";
+                car.lane = 0;
+                cout << "Changed to left Lane (0)            " << car.lane << endl;
+              }
+            }
+            if (car.current_state.compare("PLCR"))
+            {
+              if (behaviour_planner.lane_free_three == true)
+              {
+                car.current_state = "LCR";
+                car.lane = 2;
+                cout << "Changed to right Lane (2)            " << car.lane << endl;
+              }
+            }
+          }
 
-            ptsx.push_back(prev_car_x);
-            ptsx.push_back(car.x);
-            //cout << "prev_car_x               " << prev_car_x << " " << endl;
-            //cout << "car.x               " << car.x << " " << endl;
+          if (car.lane == 2)
+          {
+            // Car is on the right lane
+            // cout << "Current Lane             " << car.lane << endl;
+            // cout << "State Machine             " << behaviour_planner.state << endl;
+            if (car.current_state.compare("PLCL"))
+            {
+              if (behaviour_planner.lane_free_two == true)
+              {
+                car.current_state = "LCL";
+                car.lane = 1; // Changing to the middle
+                cout << "Changed to middle Lane (1)            " << car.lane << endl;
+              }
+            }
+            else if (car.current_state.compare("PLCR"))
+            {
+              car.current_state = "KL";
+            }
+          }
+  
+        car.speed = ref_vel; // Prototyping use
 
-            ptsy.push_back(prev_car_y);
-            ptsy.push_back(car.y);
-            //cout << "prev_car_y              " << prev_car_y << " " << endl;
-            //cout << "car.y               " << car.y << " " << endl;
+        // Trajectory Planing
+        // Create a list of widely spaced (x,y) waypoints, evenly spaced at 30m
+        // Later we will interpolate there waypoints with a spline and fill in with more points
+
+        vector<double> ptsx;
+        vector<double> ptsy;
+
+        // reference x, y yaw states
+        // ether we weill reference the starting point as where the car is or at the previous path
+        double ref_x = car.x;
+        double ref_y = car.y;
+        double ref_yaw = deg2rad(car.yaw);
+
+        // if previous size is almost empty, use the car as starting reference
+        if (prev_size < 2)
+        {
+          // Use tow points that make the path tangent to the car
+          double prev_car_x = car.x - cos(car.yaw);
+          double prev_car_y = car.y - sin(car.yaw);
+
+          ptsx.push_back(prev_car_x);
+          ptsx.push_back(car.x);
+          //cout << "prev_car_x               " << prev_car_x << " " << endl;
+          //cout << "car.x               " << car.x << " " << endl;
+
+          ptsy.push_back(prev_car_y);
+          ptsy.push_back(car.y);
+          //cout << "prev_car_y              " << prev_car_y << " " << endl;
+          //cout << "car.y               " << car.y << " " << endl;
           }
           // Use the previous paths end points as starting reference
           else

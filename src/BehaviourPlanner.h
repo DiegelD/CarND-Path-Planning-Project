@@ -14,7 +14,7 @@ private:
     bool close_object_LM_;
     bool close_object_LR_;
 
-void lane_check_around_(vector<vector<double> > sensor_fusion, Car car, int prev_size);
+void lane_check_around_(const vector<vector<double> > & sensor_fusion, Car &car, int prev_size);
 
 public:
     BehaviourPlanner();
@@ -29,7 +29,7 @@ public:
     bool KeepLane;
     // vector<Vehicle::State> get_sucessor_State(Vehicle &vehicle);
     void update(Car car);
-    void lane_check(vector<vector<double> > sensor_fusion, Car car, int prev_size);
+    void lane_check(const vector<vector<double> > & sensor_fusion, Car &car, int prev_size);
     void State_Machine();
 };
 

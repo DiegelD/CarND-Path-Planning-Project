@@ -15,19 +15,19 @@ BehaviourPlanner::BehaviourPlanner()
     bool close_object_CR_ = false;
     bool close_object_LL_ = false;
     bool close_object_LM_ = false;
-    ;
     bool close_object_LR_ = false;
-    ;
+
     //bool KeepLane = true;
     BP_State state = Keep_Lane;
 }
 
 BehaviourPlanner::~BehaviourPlanner() {}
 
-void BehaviourPlanner::lane_check(vector<vector<double> > sensor_fusion, Car car, int prev_size)
+void BehaviourPlanner::lane_check(const vector<vector<double> > & sensor_fusion, Car &car, int prev_size)
 {
-    cout << "Entered Behaviour Planer lane check               " << endl;
-    //find ref_v to use
+    // cout << "Entered Behaviour Planer lane check               " << endl;
+
+
 
     bool close_object_ = false; // Flag for detecting a closed object i a lane
 
@@ -37,7 +37,7 @@ void BehaviourPlanner::lane_check(vector<vector<double> > sensor_fusion, Car car
         float d = sensor_fusion[i][6];
         if (d < (2 + 4 * car.lane + 2) && d > (2 + 4 * car.lane - 2))
         {
-            cout << "Entered Same Lane check              " << endl;
+            // cout << "Entered Same Lane check              " << endl;
             double vx = sensor_fusion[i][3];
             double vy = sensor_fusion[i][4];
             double check_speed = sqrt(vx * vx * vy * vy);
@@ -45,8 +45,8 @@ void BehaviourPlanner::lane_check(vector<vector<double> > sensor_fusion, Car car
 
             check_car_s += ((double)prev_size * .02 * check_speed); // IF using previous can project s value out
             // check s value greater than mine and s gap
-            cout << "check_car_s > car.s        " << check_car_s << " " << car.s << endl;
-            if ((check_car_s > car.s) && ((check_car_s - car.s) < 30))
+            cout << "check_car_s > car.s (-10 - 50)       " << check_car_s << " " << car.s << endl;
+            if ((check_car_s > (car.s-10)) && ((check_car_s - car.s) < 50))  // Due to uncertainies in the simulation -10 in integrated
             {
                 // Do some logic here, lower reference velocity so we dont crash into the car infront of us, coud also flag to tray to change lanes or use ACC
                 //ref_vel = 29.5; // MPH
@@ -60,18 +60,18 @@ void BehaviourPlanner::lane_check(vector<vector<double> > sensor_fusion, Car car
             }
             else
             {
-                cout << "close_object        " << close_object_<< endl;
+                cout << "close_object detected before       " << close_object_<< endl;
                 if (close_object_ == false) // Just entering if no closed object in the lane detected
                 {
                     
                     car.too_close = false;
-                    cout << "Close Car detected       " << car.too_close << endl;
+                    // cout << "Close Car detected       " << car.too_close << endl;
                 }
             }
         }
     }
 }
-void BehaviourPlanner::lane_check_around_(vector<vector<double> > sensor_fusion, Car car, int prev_size)
+void BehaviourPlanner::lane_check_around_(const vector<vector<double> > & sensor_fusion, Car &car, int prev_size)
 {
     cout << "Entered Behaviour Planer lane check AROUND             " << endl;
     close_object_LL_ = false;
@@ -92,7 +92,7 @@ void BehaviourPlanner::lane_check_around_(vector<vector<double> > sensor_fusion,
 
             check_car_s += ((double)prev_size * .02 * check_speed); // IF using previous can project s value out
             // check s value greater than mine and s gap
-            if ((check_car_s > car.s) && ((check_car_s - car.s) < 30))
+            if ((check_car_s > (car.s-30)) && ((check_car_s - car.s) < 30))   // -30 is also checking the cars behind
             {
                 // Do some logic here, lower reference velocity so we dont crash into the car infront of us, coud also flag to tray to change lanes or use ACC
                 //ref_vel = 29.5; // MPH
@@ -121,7 +121,7 @@ void BehaviourPlanner::lane_check_around_(vector<vector<double> > sensor_fusion,
 
             check_car_s += ((double)prev_size * .02 * check_speed); // IF using previous can project s value out
             // check s value greater than mine and s gap
-            if ((check_car_s > car.s) && ((check_car_s - car.s) < 30))
+            if ((check_car_s > (car.s - 30)) && ((check_car_s - car.s) < 30))
             {
                 // Do some logic here, lower reference velocity so we dont crash into the car infront of us, coud also flag to tray to change lanes or use ACC
                 //ref_vel = 29.5; // MPH
@@ -148,7 +148,7 @@ void BehaviourPlanner::lane_check_around_(vector<vector<double> > sensor_fusion,
 
             check_car_s += ((double)prev_size * .02 * check_speed); // IF using previous can project s value out
             // check s value greater than mine and s gap
-            if ((check_car_s > car.s) && ((check_car_s - car.s) < 30))
+            if ((check_car_s > (car.s - 30)) && ((check_car_s - car.s) < 30))
             {
                 // Do some logic here, lower reference velocity so we dont crash into the car infront of us, coud also flag to tray to change lanes or use ACC
                 //ref_vel = 29.5; // MPH
