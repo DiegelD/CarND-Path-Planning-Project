@@ -20,7 +20,7 @@ The highway's waypoints loop around so the frenet s value, distance along the ro
 ## Basic Build Instructions
 
 1. Clone this repo.
-2. Make a build directory: `mkdir build && cd build`
+2. Make a build directory: `cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo .. && make`
 3. Compile: `cmake .. && make`
 4. Run it: `./path_planning`.
 
