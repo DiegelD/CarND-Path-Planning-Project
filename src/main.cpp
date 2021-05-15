@@ -56,7 +56,6 @@ int main()
   }
 
   Car car;
-  car.too_close = false;
 
   double ref_vel = 0; // mpH
 
@@ -89,7 +88,8 @@ int main()
           double car_yaw = j[1]["yaw"];
           double car_speed = j[1]["speed"];
 
-          car.update(car_s, car_d, car_yaw, car_speed);
+          // std::cout << " car_speed" << car_speed << std::endl;
+          car.update( car_x, car_y, car_s, car_d, car_yaw, car_speed);
 
           // Previous path data given to the Planner
           auto previous_path_x = j[1]["previous_path_x"];
@@ -113,13 +113,10 @@ int main()
         
             vector<Car> predictions = car.generate_predictions( sensor_fusion, car);
             vector<Car> trajectory = car.choose_next_state( predictions);
+            std::cout << " Choose State " << trajectory[1].state << std::endl;
+            
             car.realize_next_state(trajectory);
-
-            // Prototype maximaze Car Speed
-            if (car.v > 49.5)
-            {
-              car.v = 49.5;
-            }
+            
 
             // Trajectory Planing
             // Create a list of widely spaced (x,y) waypoints, evenly spaced at 30m

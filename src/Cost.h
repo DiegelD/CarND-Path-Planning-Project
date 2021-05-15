@@ -16,16 +16,21 @@ float calculate_cost(const Car &car,
 float goal_distance_cost(const Car &car,
                          const vector<Car> &trajectory,
                          const vector<Car> &predictions,
-                         map<string, float> &data);
+                         map<string, int> &data);
 
 float inefficiency_cost(const Car &car,
                         const vector<Car> &trajectory,
                         const vector<Car> &predictions,
-                        map<string, float> &data);
+                        map<string, int> &data);
 
 float lane_speed(const vector<Car> &predictions, int lane);
 
-map<string, float> get_helper_data(const Car &car,
+float offroad_cost(const Car &car,
+                        const vector<Car> &trajectory,
+                        const vector<Car> &predictions,
+                        map<string, int> &data);
+
+map<string, int> get_helper_data(const Car &car,
                                    const vector<Car> &trajectory,
                                    const vector<Car> &predictions);
 

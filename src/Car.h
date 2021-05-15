@@ -21,7 +21,7 @@ public:
     virtual ~Car();
 
     // Vehicle functions
-    void update(double car_s, double car_d, double car_yaw, double car_speed);
+    void update(double x_in, double y_in, double car_s, double car_d, double car_yaw, double car_speed);
     vector<Car> choose_next_state(vector<Car> &predictions);
 
     vector<string> successor_states();
@@ -55,15 +55,16 @@ public:
 
     void realize_next_state(vector<Car> &trajectory);
 
-    map<string, int> lane_direction = {{"PLCL", 1}, {"LCL", 1}, {"LCR", -1}, {"PLCR", -1}};
+    map<string, int> lane_direction = {{"PLCL", -1}, {"LCL", -1}, {"LCR", 1}, {"PLCR", 1}};
 
-    int L = 1;
+    int L = 1,lane_min = 0, lane_max = 2;
+    ;
 
-    int preferred_buffer = 6; // impacts "keep lane" behavior.
+    int preferred_buffer = 35; // impacts "keep lane" behavior.
 
-    int lane, s, goal_lane, goal_s, lanes_available;
+    int lane, s, goal_lane, goal_s, lanes_available = 3;
 
-    double x, y, yaw, v, d,target_speed, a, max_acceleration;
+    double x, y, yaw, v, d,target_speed, a, max_acceleration, waste_debug;
 
     string state;
 
