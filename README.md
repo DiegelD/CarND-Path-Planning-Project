@@ -26,13 +26,26 @@ Overview
 
 In the `Car.cpp` file the function **generate_predictions** takes in the data `[ id, x, y, vx, vy, s, d]`for each detected car from the provided sensorfiusion.
 Calculates thes current **velocity** and **lane** and predicts the further non-ego **position**. This is importend, since we need to know at which position the
-non-ego vehicles will when the ego vehicle can execute new maneuvers. A very simple modle base approach is used. *prev_size*, represents the waypoint for the ego vehicle
+non-ego vehicles will when the ego vehicle can execute new maneuvers. A very simple model base approach is used.
+
+ *prev_size*, represents the waypoint for the ego vehicle
 that are queing. *0.2*  = 5Hz is the run time of the programm. 
 
-velocity calculation `double check_speed = sqrt(vx * vx + vy * vy);`
-predicts further position `check_car_s += ((double)prev_size * .02 * check_speed)`;
+velocity calculation of non ege vehicles in `Car.cpp` line `403`.
+```c
+double check_speed = sqrt(vx * vx + vy * vy);
+```
+A very simple model base approach is used to predict the non-ego vehicle position at the time the ego vehicle finiished the quing waypoint and can execute the 
+new waypoints.
 
-over the `d` values from sensorfiusion the lane gets predicted.
+
+* prev_size:  represents the waypoint for the ego vehicle that are queing. 
+* 0.2:  5Hz is the run time of the programm. 
+
+predicts further position in `Car.cpp` line `407`.
+```c
+ check_car_s += ((double)prev_size * .02 * check_speed);
+```
 
 ## 2) Behavior Planer / Costfunctions 
 
