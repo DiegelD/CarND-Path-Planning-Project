@@ -14,16 +14,16 @@ Self-Driving Car Engineer Nanodegree Program
 ## Conclusion
 In the following you will find the development of an intelligent high way pilot.
 That performs optimized lane changing, this means that the car only changes into a lane that improves its forward progress.
-In the following are some highlights described.
+In the following are some highlights of the project described. For deeper and wider insights feel free to check the code that speaks for itself.
 
 Overview
 ---
-1. Sensorfuison & Prediction 
+1. Prediction 
 2. Behavior Planer / Costfunctions 
 3. Trajectoryplaner
 
 ## 1) Sensorfuison & Prediction
----
+
 In the `Car.cpp` file the function **generate_predictions** takes in the data `[ id, x, y, vx, vy, s, d]`for each detected car from the provided sensorfiusion.
 Calculates thes current **velocity** and **lane** and predicts the further non-ego **position**. This is importend, since we need to know at which position the
 non-ego vehicles will when the ego vehicle can execute new maneuvers. A very simple modle base approach is used. *prev_size*, represents the waypoint for the ego vehicle
