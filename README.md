@@ -35,7 +35,7 @@ predicts further position `check_car_s += ((double)prev_size * .02 * check_speed
 over the `d` values from sensorfiusion the lane gets predicted.
 
 ## 2) Behavior Planer / Costfunctions 
----
+
 For an better understanding of the Behavior planer the control the requirmend functionality are displayed in fuigre 2.1. Inside the green box, are the functionalities taht are implemnted
 in this project.
 
@@ -130,7 +130,7 @@ new_velocity = std::min(std::min(max_velocity_in_front,
 ```
 
 ## 3) Trajectoryplaner
----
+
 A really helpful resource for doing this project and creating smooth trajectories is
 http://kluge.in-chemnitz.de/opensource/spline/, the spline function is in a single hearder file is really easy to use.
 The spline creates a smooth trajectory through given waypoints.  Three waypoints with a distance of `40m` are choosen. This have  profen given the best results between 
