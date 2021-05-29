@@ -15,7 +15,7 @@ using std::vector;
 using namespace std;
 
 const float REACH_GOAL = pow(10, 1);
-const float EFFICIENCY = pow(10, 5);
+const float EFFICIENCY = pow(10, 4);
 const float OFFROAD    = pow(10, 7);
 const float LANECHANGE = pow(10, 2);
 double max_s = 6945.554; // Given in the main path, out of the map
@@ -38,16 +38,19 @@ float goal_distance_cost(const Car &car,
   //   goal distance.
   float cost;
   float distance = data["distance_to_goal"];
+  std::cout << " Distance" << distance << std::endl;
   if (distance > 0)
   {
     cost = 1 - 2 * exp(-(abs(2.0 * car.goal_lane - data["intended_lane"] - data["final_lane"]) / distance));
+    std::cout << " Distance Cost intern " << cost << std::endl;
   }
   else
   {
-    cost = 1;
+    cost = 0;
   }
   float nix = 0;
   cost = max(nix, cost);
+  std::cout << " Distance Cost" << cost << std::endl;
   return cost;
 }
 
@@ -62,12 +65,16 @@ float inefficiency_cost(const Car &car,
   //  that have traffic slower than vehicle's target speed.
   // You can use the lane_speed function to determine the speed for a lane.
   float proposed_speed_intended = lane_speed(predictions, data["intended_lane"]);
+  std::cout << "data[intended_lane ] " << data["intended_lane"] << std::endl;
+  std::cout << " proposed_speed_intended" << proposed_speed_intended << std::endl;
   if (proposed_speed_intended < 0)
   {
     proposed_speed_intended = car.target_speed;
   }
 
   float proposed_speed_final = lane_speed(predictions, data["final_lane"]);
+  std::cout << " proposed_speed_final" << proposed_speed_final << std::endl;
+  std::cout << "data[finale_lane] " << data["final_lane"] << std::endl;
   if (proposed_speed_final < 0)
   {
     proposed_speed_final = car.target_speed;

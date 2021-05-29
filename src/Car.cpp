@@ -194,13 +194,27 @@ vector<double> Car::get_kinematics(  vector<Car> &predictions,
         else
         {
             double max_velocity_in_front = (vehicle_ahead.s - this->s - this->preferred_buffer) + vehicle_ahead.v - 0.5 * (this->a); // Does not work due to no real time simulation
-            new_velocity = std::min(std::min(max_velocity_in_front,
-                                             max_velocity_accel_limit),
-                                    this->target_speed);
-            std::cout << " v4.1.2" << std::endl;
-            std::cout << " max_velocity_in_front" << max_velocity_in_front << std::endl;
-            std::cout << " max_velocity_accel_limit " << max_velocity_accel_limit << std::endl;
-            std::cout << " a " << this->a << std::endl;
+            // Use Case Split Acceleration, Decceleration. To use the right limits.
+            if (max_velocity_in_front >= this->v)
+            {
+                new_velocity = std::min(std::min(max_velocity_in_front,
+                                                 max_velocity_accel_limit),
+                                        this->target_speed);
+                std::cout << " v4.1.2" << std::endl;
+                std::cout << " max_velocity_in_front" << max_velocity_in_front << std::endl;
+                std::cout << " max_velocity_accel_limit " << max_velocity_accel_limit << std::endl;
+                std::cout << " a " << this->a << std::endl;
+            }
+            else
+            {
+                new_velocity = std::max(std::max(max_velocity_in_front,
+                                                 min_velocity_accel_limit),
+                                        nix);
+                std::cout << " v4.1.3" << std::endl;
+                std::cout << " max_velocity_in_front" << max_velocity_in_front << std::endl;
+                std::cout << " max_velocity_accel_limit " << max_velocity_accel_limit << std::endl;
+                std::cout << " a " << this->a << std::endl;
+            }
         }
     }
     else
@@ -395,10 +409,10 @@ vector<Car> Car::generate_predictions(const vector<vector<double>> &sensor_fusio
                 //std::cout << "Lane " << predicted_lane[j] << "  After check_car_s " << check_car_s << std::endl;
                 ;
 
-                if ((check_car_s > (this->s - 5)) && ((check_car_s - this->s) < 50)) // Take just cars in the closest enviroment into consideration
+                if ((check_car_s > (this->s - 10)) && ((check_car_s - this->s) < 50)) // Take just cars in the closest enviroment into consideration
                 {
                     predictions.push_back(Car(predicted_lane[j], check_car_s, check_speed, 0));
-                    std::cout << " Otheres Vehcile Lane: " << predicted_lane[j] << " Speed " << check_speed
+                    std::cout << " Otheres Vehicle Lane: " << predicted_lane[j] << " Speed " << check_speed
                               << " vx " << vx << " vy " << vy << " s " << check_car_s << " This Car s " << this->s
                               << std::endl;
                 }  
