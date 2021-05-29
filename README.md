@@ -28,9 +28,6 @@ In the `Car.cpp` file the function **generate_predictions** takes in the data `[
 Calculates thes current **velocity** and **lane** and predicts the further non-ego **position**. This is importend, since we need to know at which position the
 non-ego vehicles will when the ego vehicle can execute new maneuvers. A very simple model base approach is used.
 
- *prev_size*, represents the waypoint for the ego vehicle
-that are queing. *0.2*  = 5Hz is the run time of the programm. 
-
 velocity calculation of non ege vehicles in `Car.cpp` line `403`.
 ```c
 double check_speed = sqrt(vx * vx + vy * vy);
