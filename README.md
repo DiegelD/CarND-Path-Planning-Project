@@ -47,7 +47,7 @@ briefly descibed in chapter 5.
 ## 2) Prediction
 What makes pedictions interesting but also but also challening is its inherntly multi-modal. Means for example where will be a non ego car in the next 5ms (Figure 2 first image).
 
-Prediction is done in general ether model based or data driven base. Latley also Hybride approaches occured. Model base approaches uses mathematicle models to predict the trajectories. 
+Prediction is done in general ether model based or data driven based. Latley also Hybride approaches occured. Model based approaches uses mathematicle models to predict the trajectories. 
 Data driven approaches relie on maschine learning an examples to learn from. 
 
 <figure>
@@ -60,29 +60,35 @@ Data driven approaches relie on maschine learning an examples to learn from.
 </figure>
  <p></p>
 
-The upper figure the second image shows the control flow of a general prediaction function. Also our prediction function gots the same inputs. 
-Anyhow for the beginning a very simple model base approach is used to predict the non-ego vehicle position at the time the ego vehicle finished the quing waypoint and can execute the 
-new waypoints. The benefit is that with a low effort we have already a quite robost predication for most usecases of our highway pilot. Left out here is predication of other cars lane changes.
+The upper figure the second image shows the control flow of a general prediaction function. Also our prediction function **generate_predictions** in `Car.cpp` file gets the same inputs. 
+Anyhow for the beginning a very simple model base approach is used to predict the non-ego vehicle position, velcoity and lane at the time the ego vehicle finished the quing waypoint and can execute the 
+new waypoints. With a low effort we got so a quite robost predication for most usecases of our highway pilot. Left out are predication of other cars lane changes.
 To imporve this, in the further a Hybrid Naive-Bayes approach could be used. 
-
-
-Its done by the **generate_predictions** function in `Car.cpp` file. First the non ego velocity is calculated:
+**Velocity calculation** in line `403`:
 
 * vx: Non ego cars velocity [m/s] in gobal maps x direction.
 * vy: Non ego cars velocity [m/s] in gobal maps y direction.
 
-in line `403`.
 ```c
 double check_speed = sqrt(vx * vx + vy * vy);
 ```
-And than the postiton is predicted by taking into account s
+**Postion predication** in line `407`:
  
 * prev_size:  represents the waypoint for the ego vehicle that are queing. 
 * 0.2:  5Hz is the run time of the programm. 
 
-in line `407`.
 ```c
  check_car_s += ((double)prev_size * .02 * check_speed);
+```
+**Lane Predication**
+The lane predication, is actually a calculation of the current lane. This is done by taking the `d` distance from the non-ego vehicle to the highway center
+into account. And substracting out of this the lane wides of 4m. And assuming the car is driving in the middel of the lane. So one example would be then 
+that if the d = 6m. The car have to be in the middle lane. 
+
+line `393`:
+```c
+vector<int> predicted_lane{0,1,2};
+if (d < (2 + 4 * predicted_lane[j] + 2) && d > (2 + 4 * predicted_lane[j] - 2))
 ```
 
 ## 2) Behavior Planer / Costfunctions 
