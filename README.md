@@ -95,9 +95,11 @@ if (d < (2 + 4 * predicted_lane[j] + 2) && d > (2 + 4 * predicted_lane[j] - 2))
 ```
 
 ## 3) Behavior Planer / Costfunctions 
-### 3.1 Finite State Machine
-One great analagoty of the Behaviour Planer is that it takes the respoibilies like a navigator on the pessanger seat. Its gives the commands where to go and when to change lanes.
-But the vaigator is not resposible for the safete. To check if the lane is free and a trasistion can made.
+A great analagie of the Behaviour Planer is that it takes the respoibilies like a navigator on the pessanger seat. Its gives the commands where to go and when to change lanes.
+However the nvaigator is not resposible for the safey and execution.
+So two big parts are considert here, one is a **State Machine** that tells wichs maneuvers we should take and **Costfunctions** that weighign the maneuvers about the requirements
+of the behaviour planning.
+
 
 <figure>
  <img src="./readme_data/behaviour_planning_overview.png" width="360" alt="Behavior Planning Overview" />
@@ -107,6 +109,7 @@ But the vaigator is not resposible for the safete. To check if the lane is free 
  </figcaption>
 </figure>
  <p></p>
+### 3.1 Finite State Machine
 
 One way to implement a transition function is by generating rough trajectories for each accessible "next state" 
 and then finding the best. To "find the best" we generally use cost functions. We can then figure out how costly each rough trajectory is
