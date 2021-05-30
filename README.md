@@ -22,8 +22,6 @@ Overview
 1. Behaviour Planner
 2. Prediction 
 3. Behavior Planer
-  3.1 Finite State Machine
-  3.2 Costfunctions
 4. Trajectoryplaner
 5. Additional Information from Udacity
 
@@ -97,6 +95,18 @@ if (d < (2 + 4 * predicted_lane[j] + 2) && d > (2 + 4 * predicted_lane[j] - 2))
 ```
 
 ## 3) Behavior Planer / Costfunctions 
+### 3.1 Finite State Machine
+One great analagoty of the Behaviour Planer is that it takes the respoibilies like a navigator on the pessanger seat. Its gives the commands where to go and when to change lanes.
+But the vaigator is not resposible for the safete. To check if the lane is free and a trasistion can made.
+
+<figure>
+ <img src="./readme_data/behaviour_planning_overview.png" width="360" alt="Behavior Planning Overview" />
+ <figcaption>
+ <p></p> 
+ <p style="text-align: center;"> Fig. 3: Behavior Planning Overview. </p> 
+ </figcaption>
+</figure>
+ <p></p>
 
 One way to implement a transition function is by generating rough trajectories for each accessible "next state" 
 and then finding the best. To "find the best" we generally use cost functions. We can then figure out how costly each rough trajectory is
@@ -113,7 +123,8 @@ The hearth of the `Behaviour` function are the costfunctions, which are calculat
 The chellange in gernal for cost functions are to define the right amout of functions and adjust them so that the desired behaviour is reached. 
 For this project following four are implemented:
 
-## costfunctions
+### 3.2 Co
+stfunctions
 Desiging costfunctions is difficult and to bring the to cooperate o produce resonable vehicle behavior is hard. Some of the challanges are to solve problems.
 In general there are there posibilieties. Modifing the exciting constfunctions, adding new functions or tweaking the weights. A help here could be regrassion testing. This is part of develpoing safety critical software.
 The costfunctions are desinged in that waht that output varietas between -1 - 1. And the twaeking is then done by weights is balance the costs. 
