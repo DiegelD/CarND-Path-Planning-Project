@@ -22,12 +22,13 @@ Overview
 1. Prediction 
 2. Behavior Planer / Costfunctions 
 3. Trajectoryplaner
+4. Additional Information from Udacity
 
 ## 1) Prediction
 
 
-In the `Car.cpp` file the function **generate_predictions** takes in the data `[ id, x, y, vx, vy, s, d]`for each detected car from the provided sensorfiusion.
-Calculates out of this data the current **velocity**, **lane** and predicts the further non-ego **position**. This is importend, since we need to know at which position the
+In the `Car.cpp` file the function **generate_predictions** takes in the data `[ id, x, y, vx, vy, s, d]`for each detected car from the provided sensorfiusion (detailed inforamtion chapter 4).
+Out of this data it calculates the current **velocity**, **lane** and predicts the further non-ego **position**. This is importend, since we need to know at which position the
 non-ego vehicles will be, when the ego vehicle can execute new maneuvers.
 
 * vx: Non ego cars velocity [m/s] in gobal maps x direction.
