@@ -97,7 +97,7 @@ if (d < (2 + 4 * predicted_lane[j] + 2) && d > (2 + 4 * predicted_lane[j] - 2))
 ## 3) Behavior Planer / Costfunctions 
 A great analagie of the Behaviour Planer is that it takes the respoibilies like a navigator on the pessanger seat. Its gives the commands where to go and when to change lanes.
 However the nvaigator is not resposible for the safey and execution.<br/>
-So two big parts are considert here, one is a **State Machine** that tells wichs maneuvers we should take and **Costfunctions** that weighign the maneuvers about the requirements
+So two big parts are considert here, one is a **State Machine** that tells wichs maneuvers we should take and **Costfunctions** that weighign the possible maneuvers about the requirements
 of the behaviour planning.
 
 
