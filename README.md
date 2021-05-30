@@ -84,7 +84,7 @@ in line 407:
 ```
 ### Lane Predication:
 The lane predication, is actually a calculation of the current lane. This is done by taking the `d` distance from the non-ego vehicle to the highway center
-into account. And substracting out of this the lane wides of 4m. And assuming the car is driving in the middel of the lane (lane/2 = 2m). *So one example would be then 
+into account. And substracting out of this the lane wides of 4m. In addition we assuming all cars are driving in the middel of the lane (lane/2 = 2m). *So one example would be then 
 that if the d = 6m. The car have to be in the middle lane.* 
 
 line `393`:
