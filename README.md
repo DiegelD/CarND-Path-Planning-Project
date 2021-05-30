@@ -26,20 +26,20 @@ Overview
 5. Additional Information from Udacity
 
 
-## Behaviour Planer
+## Intro Behaviour Planer
 One of the most challening topics for the self driving cars. The heard of it is a finite State Machine that govern the complexity of the driving care. Here its not about what exact input for the steering angle we are given its more about
 on the macrscopiclevel whether its a left or right or change lanes of a highway or take a exit.
 
-*Personal Note, after you understand this code you will never look at you owen drive skill the same level as before*
+*Personal Note, after you understand a "Behaviour Planer" you will never look at you owen drive skill the same level as before*
 
-Figure 1 shows the full interactions of a behovoir Planer. With the Control flow and the update times. The green box markes the areas of a Path-Planner. To enable me to focus just on this topic, all the functions outside the box are provided by Udacity and 
-roughly descibed in chapter 5.
+Figure below, shows the full interactions of a behovoir Planer. With the control flows and the update times. The green box markes the areas of a Path-Planner. To enable me to focus just on this topic, all the other functions outside the box are provided by Udacity and 
+briefly descibed in chapter 5.
 
 <figure>
  <img src="./readme_data/BC_overview.png" width="360" alt="BehaviourControl" />
  <figcaption>
  <p></p> 
- <p style="text-align: center;"> Fig. 1: Behavior Planer: Schematic description of the control flow and timing. </p> 
+ <p style="text-align: center;"> Fig. 1: Behavior Planer: Schematic description of the control flows and timing. </p> 
  </figcaption>
 </figure>
  <p></p>
