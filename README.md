@@ -32,7 +32,7 @@ on the macrscopiclevel whether its a left or right or change lanes of a highway 
 
 *Personal Note, after you understand a "Behaviour Planer" you will never look at you owen drive skill the same level as before*
 
-Figure below, shows the full interactions of a behovoir Planer. With the control flows and the update times. The green box markes the areas of a Path-Planner. To enable me to focus just on this topic, all the other functions outside the box are provided by Udacity and 
+The figure below shows the full interactions of a Behovoir Planer. With the control flows and the update times. The green box markes the areas of a Path-Planner. To enable me to focus just on this topic, all the other functions outside the box are provided by Udacity and 
 briefly descibed in chapter 5.
 
 <figure>
@@ -45,6 +45,27 @@ briefly descibed in chapter 5.
  <p></p>
 
 ## 2) Prediction
+What makes pedictions interesting but also but also challening is its inherntly multi-modal. Means for example where will be a non ego car in the next 5ms.
+
+Prediction is done in general ether modle based or data driven base. Latley also Hybride approaches occured. Modle base approaches uses mathematicle models to predict the trajectories. 
+Data driven approaches relie on maschine learning an examples to learn from. 
+
+
+<figure>
+ <img src="./readme_data/predication_intro.png" width="360" alt="BehaviourControl" />
+ <img src="./readme_data/prediction_flow.png" width="360" alt="BehaviourControl" />
+ <figcaption>
+ <p></p> 
+ <p style="text-align: center;"> Fig. 2: Behavior Planer: Schematic description of the control flows and timing. </p> 
+ </figcaption>
+</figure>
+ <p></p>
+
+
+
+For the beginning a very simple model base approach is used to predict the non-ego vehicle position at the time the ego vehicle finished the quing waypoint and can execute the 
+new waypoints. The benefit is that we have quite fast a predication on the other side we do not take lane cahnges of the other cars into account.
+Fo the testing this was sophient enough, however to improve the Palner further a Hybrid Naive-Bayes approach could be used. 
 
 
 In the `Car.cpp` file the function **generate_predictions** takes in the data `[ id, x, y, vx, vy, s, d]`for each detected car from the provided sensorfiusion (detailed inforamtion chapter 4).
@@ -71,21 +92,25 @@ predicts further position in `Car.cpp` line `407`.
 
 ## 2) Behavior Planer / Costfunctions 
 
-For an better understanding of the Behavior planer the control the requirmend functionality are displayed in fuigre 2.1. Inside the green box, are the functionalities taht are implemnted
-in this project.
+One way to implement a transition function is by generating rough trajectories for each accessible "next state" 
+and then finding the best. To "find the best" we generally use cost functions. We can then figure out how costly each rough trajectory is
+and then select the state with the lowest cost trajectory
 
-<figure>
- <img src="./readme_data/BC_overview.png" width="360" alt="BehaviourControl" />
- <figcaption>
- <p></p> 
- <p style="text-align: center;"> Fig. 2.1: Behaviour Control: The implemented functions and the control flow </p> 
- </figcaption>
-</figure>
- <p></p>
+-> Choose Next State. 
+    -> Pseudo Code from Udacity
+
+Transisions Decribed by sucessor States.
+
+-> Than also a smooth tansistion into Cost functions!!
 
 The hearth of the `Behaviour` function are the costfunctions, which are calculating the best behaviour for the current vehicle state. 
 The chellange in gernal for cost functions are to define the right amout of functions and adjust them so that the desired behaviour is reached. 
 For this project following four are implemented:
+
+## costfunctions
+Desiging costfunctions is difficult and to bring the to cooperate o produce resonable vehicle behavior is hard. Some of the challanges are to solve problems.
+In general there are there posibilieties. Modifing the exciting constfunctions, adding new functions or tweaking the weights. A help here could be regrassion testing. This is part of develpoing safety critical software.
+The costfunctions are desinged in that waht that output varietas between -1 - 1. And the twaeking is then done by weights is balance the costs. 
 
 ### inefficenty_cost
 The single most imported cost function. 
@@ -101,7 +126,7 @@ float cost = (2.0 * car.target_speed - proposed_speed_intended - proposed_speed_
 ```
 ### distance to goal
 The cost increases with both the distance of intended lane from the goal and the distance of the final lane from the goal. The cost of being out 
-of the goal lane also becomes larger as the vehicle approaches the goal.
+of the goal lane also becomes larger as the vehicle approaches the goal. This ensures that the vehicle is in the right lane by reaching the goal.
 
 ![equation](https://latex.codecogs.com/gif.image?\dpi{130}&space;cost=1-e^{-\frac{\left&space;|&space;\Delta&space;d&space;\right|}{\Delta&space;s})
 
