@@ -64,7 +64,7 @@ The upper figure the second image shows the control flow of a general prediactio
 Anyhow for the beginning a very simple model base approach is used to predict the non-ego vehicle position, velcoity and lane at the time the ego vehicle finished the quing waypoint and can execute the 
 new waypoints. With a low effort we got so a quite robost predication for most usecases of our highway pilot. Left out are predication of other cars lane changes.
 To imporve this, in the further a Hybrid Naive-Bayes approach could be used. 
-**Velocity calculation** in line `403`:
+### Velocity calculation in line `403`:
 
 * vx: Non ego cars velocity [m/s] in gobal maps x direction.
 * vy: Non ego cars velocity [m/s] in gobal maps y direction.
@@ -72,7 +72,7 @@ To imporve this, in the further a Hybrid Naive-Bayes approach could be used.
 ```c
 double check_speed = sqrt(vx * vx + vy * vy);
 ```
-**Postion predication** in line `407`:
+### Postion predication in line `407`:
  
 * prev_size:  represents the waypoint for the ego vehicle that are queing. 
 * 0.2:  5Hz is the run time of the programm. 
@@ -80,7 +80,7 @@ double check_speed = sqrt(vx * vx + vy * vy);
 ```c
  check_car_s += ((double)prev_size * .02 * check_speed);
 ```
-**Lane Predication**
+### Lane Predication:
 The lane predication, is actually a calculation of the current lane. This is done by taking the `d` distance from the non-ego vehicle to the highway center
 into account. And substracting out of this the lane wides of 4m. And assuming the car is driving in the middel of the lane. So one example would be then 
 that if the d = 6m. The car have to be in the middle lane. 
