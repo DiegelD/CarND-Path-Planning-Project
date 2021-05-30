@@ -125,7 +125,7 @@ or back to *KP* if transistion is not possible due to a vehicle at the other lan
 The vector of possible trajectories is handelt by the function `successor_states` line `92` in the `Car.cpp` file and is the input for the *FSM*.
 Seen in the example of a *FSM* in the image below.
 
-The trasistion between the states is handled by a transions function, called **Chose next state**. Wich takes the input and calculates with the costfunctions the 
+The trasistion between the states is handled by a transions function, called **Chose next state** line `43` in the `Car.cpp` file . Wich takes the input and calculates with the costfunctions the 
 best next state. 
 <figure>
  <img src="./readme_data/finite_state_machine.png" width="360" alt="finite_state_machine" />
@@ -136,17 +136,8 @@ best next state.
 </figure>
  <p></p>
 
-
--> Choose Next State. 
-    -> Pseudo Code from Udacity
-
-Transisions Decribed by sucessor States.
-
--> Than also a smooth tansistion into Cost functions!!
-
-The hearth of the `Behaviour` function are the costfunctions, which are calculating the best behaviour for the current vehicle state. 
-The chellange in gernal for cost functions are to define the right amout of functions and adjust them so that the desired behaviour is reached. 
-For this project following four are implemented:
+For a better readability the code is not describet here in detail. However feel free to look into the code, comments are made there 
+to increase the understanding. 
 
 ### 3.2 Costfunctions
 Desiging costfunctions is difficult and to bring the to cooperate o produce resonable vehicle behavior is hard. Some of the challanges are to solve problems.
