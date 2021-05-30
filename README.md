@@ -45,11 +45,10 @@ briefly descibed in chapter 5.
  <p></p>
 
 ## 2) Prediction
-What makes pedictions interesting but also but also challening is its inherntly multi-modal. Means for example where will be a non ego car in the next 5ms.
+What makes pedictions interesting but also but also challening is its inherntly multi-modal. Means for example where will be a non ego car in the next 5ms (Figure 2 first image).
 
-Prediction is done in general ether modle based or data driven base. Latley also Hybride approaches occured. Modle base approaches uses mathematicle models to predict the trajectories. 
+Prediction is done in general ether model based or data driven base. Latley also Hybride approaches occured. Model base approaches uses mathematicle models to predict the trajectories. 
 Data driven approaches relie on maschine learning an examples to learn from. 
-
 
 <figure>
  <img src="./readme_data/predication_intro.png" width="360" alt="BehaviourControl" />
@@ -61,16 +60,13 @@ Data driven approaches relie on maschine learning an examples to learn from.
 </figure>
  <p></p>
 
+The upper figure the second image shows the control flow of a general prediaction function. Also our prediction function gots the same inputs. 
+Anyhow for the beginning a very simple model base approach is used to predict the non-ego vehicle position at the time the ego vehicle finished the quing waypoint and can execute the 
+new waypoints. The benefit is that with a low effort we have already a quite robost predication for most usecases of our highway pilot. Left out here is predication of other cars lane changes.
+To imporve this, in the further a Hybrid Naive-Bayes approach could be used. 
 
 
-For the beginning a very simple model base approach is used to predict the non-ego vehicle position at the time the ego vehicle finished the quing waypoint and can execute the 
-new waypoints. The benefit is that we have quite fast a predication on the other side we do not take lane cahnges of the other cars into account.
-Fo the testing this was sophient enough, however to improve the Palner further a Hybrid Naive-Bayes approach could be used. 
-
-
-In the `Car.cpp` file the function **generate_predictions** takes in the data `[ id, x, y, vx, vy, s, d]`for each detected car from the provided sensorfiusion (detailed inforamtion chapter 4).
-Out of this data it calculates the current **velocity**, **lane** and predicts the further non-ego **position**. This is importend, since we need to know at which position the
-non-ego vehicles will be, when the ego vehicle is able execute new maneuvers.
+Its done by the **generate_predictions** function in `Car.cpp` file. First the non ego velocity is calculated:
 
 * vx: Non ego cars velocity [m/s] in gobal maps x direction.
 * vy: Non ego cars velocity [m/s] in gobal maps y direction.
@@ -79,9 +75,8 @@ velocity calculation of non ege vehicles in `Car.cpp` line `403`.
 ```c
 double check_speed = sqrt(vx * vx + vy * vy);
 ```
-For the beginning a very simple model base approach is used to predict the non-ego vehicle position at the time the ego vehicle finished the quing waypoint and can execute the 
-new waypoints.
-
+And than the postiton is predicted by taking into account s
+ 
 * prev_size:  represents the waypoint for the ego vehicle that are queing. 
 * 0.2:  5Hz is the run time of the programm. 
 
