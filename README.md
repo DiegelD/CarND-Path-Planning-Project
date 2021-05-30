@@ -192,7 +192,7 @@ cost = 1 - 2 * exp(-(abs(delta_d) / distance));
 During the devlopment stage, the ego car left the desired path to dirve off road. Since there is never traffic jam. To penalize this behavoir 
 all paths that will leave the road will get and enormous cost.
 
-* lane_max: Are the lanes that allowed to drive
+* lane_max: Are the lanes that allowed to drive 
 
 in `Cost.cpp`line `111`.
 ```c
@@ -237,6 +237,9 @@ new_velocity = std::min(std::min(max_velocity_in_front,
 ```
 
 ## 3) Trajectoryplaner
+A trajectory is not just a curve the car can follow, but also a time sequence in which we say how fast the car should go.
+In finding trajectories are many importend things out to watch for. The most importend on is "don`t crash". But alsow passagers comfort, 
+the lateral and lognitinial acceleration and jerck is importend. So the chellange here is to make it as smooth and elegant as possible.
 
 A really helpful resource for doing this project and creating smooth trajectories is
 http://kluge.in-chemnitz.de/opensource/spline/, the spline function is in a single hearder file is really easy to use.
