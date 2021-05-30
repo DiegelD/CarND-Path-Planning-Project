@@ -112,9 +112,17 @@ of the behaviour planning.
 
 ### 3.1 Finite State Machine
 A Finite State Machine is a way to solve the Behaviour Planning Problem. It makes descions on a finte set of
-discret states. 
+discret states. In our project we have five states:
 
-Any pair can be conected by one or more transistions.
+* KL: Keep Lane
+* PLCL: Prepare Lane Change Left
+* LCL: Lane Change Left
+* PLCR: Prepare Lane Change Right
+* LCR: Lane Change Right
+
+Any pair can be conected by one or more transistions. So from the KL its possible to transtion to PLCL/PCLR and from there to Lane Change 
+or back to KP if transistion is not possible due to a vehicle at the other lane. The LCL / LCR states only transition back to KP.
+The vector or possible trajectories is handelt by the function `successor_states` in the `Car.cpp` file.
 
 An example of a finte state machine is seen in the image below. In this project as imput we get an vector of possible next states. 
 The trasistion is handled by a transions function, called **Chose next state**. Wich takes the input and calculates with the costfunctions the 
@@ -123,19 +131,20 @@ best next state.
  <img src="./readme_data/finite_state_machine.png" width="360" alt="finite_state_machine" />
  <figcaption>
  <p></p> 
- <p style="text-align: center;"> Fig. 3.2: Finite State Overview. </p> 
+ <p style="text-align: center;"> Fig. 3.2: Example Finite State Overview. </p> 
  </figcaption>
 </figure>
  <p></p>
 
 
-In our project this are five:
+In our project we have five discret states:
 
 * KL: Keep Lane
 * PLCL: Prepare Lane Change Left
 * LCL: Lane Change Left
 * PLCR: Prepare Lane Change Right
 * LCR: Lane Change Right
+
 
  Any pair can be conected by one or more transistions.
 
