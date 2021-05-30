@@ -15,7 +15,7 @@ Self-Driving Car Engineer Nanodegree Program
 In the following you will find the development of an **intelligent high way pilot**.
 That performs optimized lane changing, means the car only changes into a lane that improves its forward progress.
 
- *In the following are some highlights of the project described. For deeper and wider insights feel free to check the code that speaks for itself*.
+ *In the following are some highlights of the project described. For deeper, wider more detailed insights feel free to check the code that speaks for itself*.
 
 Overview
 ---
