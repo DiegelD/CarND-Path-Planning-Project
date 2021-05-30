@@ -140,7 +140,7 @@ For a better readability the code is not describet here in detail. However feel 
 to increase the understanding. 
 
 ### 3.2 Costfunctions
-Disgining costfunctions is difficult and to bring them to cooperate and to produce resonable vehicle behavior is hard.
+Designing costfunctions is difficult and to bring them to cooperate and to produce resonable vehicle behavior is hard.
 Some of the challanges are to solve problems, wihout unsolving old ones. To ensure this in general are regrassion test are used,
 which is part of developing safety critical software.
 
