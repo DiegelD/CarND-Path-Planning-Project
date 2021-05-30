@@ -111,18 +111,14 @@ of the behaviour planning.
  <p></p>
 
 ### 3.1 Finite State Machine
-A Finite State Machine is a way to solve the Behaviour Planning Problem.It makes descions on a finte set of
-discret states. In our project this are five:
+A Finite State Machine is a way to solve the Behaviour Planning Problem. It makes descions on a finte set of
+discret states. 
 
-* KL: Keep Lane
-* PLCL: Prepare Lane Change Left
-* LCL: Lane Change Left
-* PLCR: Prepare Lane Change Right
-* LCR: Lane Change Right
+Any pair can be conected by one or more transistions.
 
- Any pair can be conected by one or more transistions.
-
-An example of a finte state machine is seen in the image below. 
+An example of a finte state machine is seen in the image below. In this project as imput we get an vector of possible next states. 
+The trasistion is handled by a transions function, called **Chose next state**. Wich takes the input and calculates with the costfunctions the 
+best next state. 
 <figure>
  <img src="./readme_data/finite_state_machine.png" width="360" alt="finite_state_machine" />
  <figcaption>
@@ -131,7 +127,17 @@ An example of a finte state machine is seen in the image below.
  </figcaption>
 </figure>
  <p></p>
-finite_state_machine
+
+
+In our project this are five:
+
+* KL: Keep Lane
+* PLCL: Prepare Lane Change Left
+* LCL: Lane Change Left
+* PLCR: Prepare Lane Change Right
+* LCR: Lane Change Right
+
+ Any pair can be conected by one or more transistions.
 
 One way to implement a transition function is by generating rough trajectories for each accessible "next state" 
 and then finding the best. To "find the best" we generally use cost functions. We can then figure out how costly each rough trajectory is
