@@ -71,7 +71,7 @@ Its done by the **generate_predictions** function in `Car.cpp` file. First the n
 * vx: Non ego cars velocity [m/s] in gobal maps x direction.
 * vy: Non ego cars velocity [m/s] in gobal maps y direction.
 
-velocity calculation of non ege vehicles in `Car.cpp` line `403`.
+in line `403`.
 ```c
 double check_speed = sqrt(vx * vx + vy * vy);
 ```
