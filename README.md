@@ -159,7 +159,7 @@ const float OFFROAD    = pow(10, 7);
 const float LANECHANGE = pow(10, 2) * 3;
 ```
 
-#### inefficenty_cost
+#### Inefficenty Cost (Target Efficenty)
 The single most imported cost function. 
 Cost becomes higher for trajectories with intened lane and final lane, that have traffic slower than traget speed.
 
@@ -171,7 +171,7 @@ in `Cost.cpp`line `81`.
  ```c
 float cost = (2.0 * car.target_speed - proposed_speed_intended - proposed_speed_final) / car.target_speed;
 ```
-#### distance to goal
+#### Distance to goal (Comfort/ Feasability)
 The cost increases with both the distance of intended lane from the goal and the distance of the final lane from the goal. The cost of being out 
 of the goal lane also becomes larger as the vehicle approaches the goal. This ensures that the vehicle is in the right lane by reaching the goal.
 
@@ -188,7 +188,7 @@ in `Cost.cpp`line `42 & 46`.
 int delta_d = 2.0 * car.goal_lane - data["intended_lane"] - data["final_lane"];
 cost = 1 - 2 * exp(-(abs(delta_d) / distance));
 ```
-#### offroad_cost
+#### Offroad Cost (Safety)
 During the devlopment stage, the ego car left the desired path to dirve off road. Since there is never traffic jam. To penalize this behavoir 
 all paths that will leave the road will get and enormous cost.
 
@@ -205,7 +205,7 @@ in `Cost.cpp`line `111`.
     cost = 1;
   }
 ```
-#### change_lange_cost
+#### Change Lange Cost (Comforts)
 An other problem during the development occurt. The ego vehicle changed wildly the lane, because other lanes hat a marginal velocity advantages. 
 To avoid this behaviour and just change the lanes due to a greater velocity advantage this function got introduced. 
 
