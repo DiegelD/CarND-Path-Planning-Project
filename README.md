@@ -163,9 +163,9 @@ const float LANECHANGE = pow(10, 2) * 3;
 The single most imported cost function. 
 Cost becomes higher for trajectories with intened lane and final lane, that have traffic slower than traget speed.
 
-*proposed_speed_intended* = Intended line speed
-*proposed_speed_final*    = Last line speed 
-*car.target_speed*        = Target Speed. In our case 49.5mph
+* proposed_speed_intended: Intended line speed
+* proposed_speed_final:    Last line speed 
+* car.target_speed:        Target Speed. In our case 49.5mph
 
 in `Cost.cpp`line `81`.
  ```c
@@ -205,7 +205,7 @@ in `Cost.cpp`line `111`.
     cost = 1;
   }
 ```
-#### Change Lange Cost (Comforts)
+#### Change Lange Cost (Comfort)
 An other problem during the development occurt. The ego vehicle changed wildly the lane, because other lanes hat a marginal velocity advantages. 
 To avoid this behaviour and just change the lanes due to a greater velocity advantage this function got introduced. 
 
