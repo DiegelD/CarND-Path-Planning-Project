@@ -12,9 +12,9 @@ Self-Driving Car Engineer Nanodegree Program
  <p></p>
 
 ## Conclusion
-In the following you will find the development of an intelligent high way pilot.
-That performs optimized lane changing, this means that the car only changes into a lane that improves its forward progress.
-In the following are some highlights of the project described. For deeper and wider insights feel free to check the code that speaks for itself.
+In the following you will find the development of an **intelligent high way pilot**.
+That performs optimized lane changing, means the car only changes into a lane that improves its forward progress.
+- *In the following are some highlights of the project described. For deeper and wider insights feel free to check the code that speaks for itself*.
 
 Overview
 ---
@@ -22,19 +22,22 @@ Overview
 2. Behavior Planer / Costfunctions 
 3. Trajectoryplaner
 
-## 1) Sensorfuison & Prediction
+## 1) Prediction
+
 
 In the `Car.cpp` file the function **generate_predictions** takes in the data `[ id, x, y, vx, vy, s, d]`for each detected car from the provided sensorfiusion.
-Calculates thes current **velocity** and **lane** and predicts the further non-ego **position**. This is importend, since we need to know at which position the
-non-ego vehicles will when the ego vehicle can execute new maneuvers. A very simple model base approach is used.
+Calculates out of this data the current **velocity**, **lane** and predicts the further non-ego **position**. This is importend, since we need to know at which position the
+non-ego vehicles will be, when the ego vehicle can execute new maneuvers.
+
+* vx: Non ego cars velocity [m/s] in gobal maps x direction.
+* vy: Non ego cars velocity [m/s] in gobal maps y direction.
 
 velocity calculation of non ege vehicles in `Car.cpp` line `403`.
 ```c
 double check_speed = sqrt(vx * vx + vy * vy);
 ```
-A very simple model base approach is used to predict the non-ego vehicle position at the time the ego vehicle finiished the quing waypoint and can execute the 
+For the beginning a very simple model base approach is used to predict the non-ego vehicle position at the time the ego vehicle finiished the quing waypoint and can execute the 
 new waypoints.
-
 
 * prev_size:  represents the waypoint for the ego vehicle that are queing. 
 * 0.2:  5Hz is the run time of the programm. 
@@ -62,7 +65,7 @@ The hearth of the `Behaviour` function are the costfunctions, which are calculat
 The chellange in gernal for cost functions are to define the right amout of functions and adjust them so that the desired behaviour is reached. 
 For this project following four are implemented:
 
-**inefficenty_cost**
+### inefficenty_cost
 The single most imported cost function. 
 Cost becomes higher for trajectories with intened lane and final lane, that have traffic slower than traget speed.
 
@@ -74,7 +77,7 @@ in `Cost.cpp`line `81`.
  ```c
 float cost = (2.0 * car.target_speed - proposed_speed_intended - proposed_speed_final) / car.target_speed;
 ```
-**distance to goal**
+### distance to goal
 The cost increases with both the distance of intended lane from the goal and the distance of the final lane from the goal. The cost of being out 
 of the goal lane also becomes larger as the vehicle approaches the goal.
 
@@ -91,7 +94,7 @@ in `Cost.cpp`line `42 & 46`.
 int delta_d = 2.0 * car.goal_lane - data["intended_lane"] - data["final_lane"];
 cost = 1 - 2 * exp(-(abs(delta_d) / distance));
 ```
-**offroad_cost**
+### offroad_cost
 During the devlopment stage, the ego car left the desired path to dirve off road. Since there is never traffic jam. To penalize this behavoir 
 all paths that will leave the road will get and enormous cost.
 
@@ -108,7 +111,7 @@ in `Cost.cpp`line `111`.
     cost = 1;
   }
 ```
-**change_lange_cost**
+### change_lange_cost
 An other problem during the development occurt. The ego vehicle changed wildly the lane, because other lanes hat a marginal velocity advantages. 
 To avoid this behaviour and just change the lanes due to a greater velocity advantage this function got introduced. 
 
@@ -123,7 +126,7 @@ in `Cost.cpp`line `146`.
     cost = 1;
   }
 ```
-**Velocity control**
+### Velocity control
 To control the velocity and max. acceleration of the vehicle a pritty nice and simple calculatio is used. 
 On the first step the new max velocity is set to ensure an cofortable aceleration and decelreation smaller `10m/s^2`.
 ```c
@@ -135,8 +138,8 @@ double max_velocity_in_front = (vehicle_ahead.s - this->s - this->preferred_buff
 ```
 ```c
 new_velocity = std::min(std::min(max_velocity_in_front,
-                                                 max_velocity_accel_limit),
-                                        this->target_speed);
+                                 max_velocity_accel_limit),
+                                       this->target_speed);
 ```
 
 ## 3) Trajectoryplaner
@@ -144,7 +147,7 @@ new_velocity = std::min(std::min(max_velocity_in_front,
 A really helpful resource for doing this project and creating smooth trajectories is
 http://kluge.in-chemnitz.de/opensource/spline/, the spline function is in a single hearder file is really easy to use.
 The spline creates a smooth trajectory through given waypoints.  Three waypoints with a distance of `40m` are choosen. This have  profen given the best results between 
-smoothnes and accourancy. Lower distances can lead to a too high lateral accerleration, by changing two lines. And a higher distance leads to an unconsitance path that cant hold the line.
+smoothnes and accourancy. Lower distances can lead to a too high lateral accerleration, by changing two hihgway lines. And a higher distance leads to an unconsitance path that cant hold the line.
 The car.lane represents the desired lane by the behaviour planer.
 
 in `main.cpp`line `182`.
