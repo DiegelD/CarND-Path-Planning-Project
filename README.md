@@ -80,7 +80,7 @@ And than the postiton is predicted by taking into account s
 * prev_size:  represents the waypoint for the ego vehicle that are queing. 
 * 0.2:  5Hz is the run time of the programm. 
 
-predicts further position in `Car.cpp` line `407`.
+in line `407`.
 ```c
  check_car_s += ((double)prev_size * .02 * check_speed);
 ```
