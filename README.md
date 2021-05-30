@@ -123,9 +123,8 @@ discret states. In our project we have five states:
 Any pair can be conected by one or more transistions. So from the *KL* its possible to transtion to *PLCL/PCLR* and from there to *Lane Change*
 or back to *KP* if transistion is not possible due to a vehicle at the other lane. The *LCL/LCR* states only transition back to *KP*.
 The vector of possible trajectories is handelt by the function `successor_states` in the `Car.cpp` file and is the input for the *FSM*.
-
-An example of a finte state machine is seen in the image below. In this project as imput we get an vector of possible next states. 
-The trasistion is handled by a transions function, called **Chose next state**. Wich takes the input and calculates with the costfunctions the 
+Seen in the example if a *FSM* in the image below.<br/>
+The trasistion between the states is handled by a transions function, called **Chose next state**. Wich takes the input and calculates with the costfunctions the 
 best next state. 
 <figure>
  <img src="./readme_data/finite_state_machine.png" width="360" alt="finite_state_machine" />
