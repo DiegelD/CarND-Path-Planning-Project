@@ -55,7 +55,7 @@ Data driven approaches relie on maschine learning an examples to learn from.
  <img src="./readme_data/prediction_flow.png" width="360" alt="BehaviourControl" />
  <figcaption>
  <p></p> 
- <p style="text-align: center;"> Fig. 2: Behavior Planer: Schematic description of the control flows and timing. </p> 
+ <p style="text-align: center;"> Fig. 2: Predication: Up inherntly multi-modal prediction. Down predication flow. </p> 
  </figcaption>
 </figure>
  <p></p>
