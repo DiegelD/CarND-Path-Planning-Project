@@ -19,17 +19,41 @@ That performs optimized lane changing, means the car only changes into a lane th
 
 Overview
 ---
-1. Prediction 
-2. Behavior Planer / Costfunctions 
-3. Trajectoryplaner
-4. Additional Information from Udacity
+1. Behaviour Planner
+  1.1 General
+  1.2 Project Bounderies
+2. Prediction 
+3. Behavior Planer / Costfunctions 
+4. Trajectoryplaner
+5. Additional Information from Udacity
 
-## 1) Prediction
+
+## Behaviour Planer
+### 1.1 General
+One of the most challening topics for the self driving cars. The heard of it is a finite State Machine that 
+govern the complexity of the driving care. Here its not about what exact input for the steering angle we are given its more about
+on the macrscopiclevel whether its a left or right or change lanes of a highway or take a exit.
+*Personal Note, after you understand this code you will never look at you owen drive skill the same level as before*
+
+Figure 1 shows the full interactions of a behovoir Planer. With the Control flow and the update times. The green box markes the areas
+of a Path-Planner. To enable me to focus just on this topic, all the functions outside the box are provided by Udacity and 
+roughly descibed in chapter 5.
+
+<figure>
+ <img src="./readme_data/BC_overview.png" width="360" alt="BehaviourControl" />
+ <figcaption>
+ <p></p> 
+ <p style="text-align: center;"> Fig. 1: Behaviour Control: The implemented functions and the control flow </p> 
+ </figcaption>
+</figure>
+ <p></p>
+
+## 2) Prediction
 
 
 In the `Car.cpp` file the function **generate_predictions** takes in the data `[ id, x, y, vx, vy, s, d]`for each detected car from the provided sensorfiusion (detailed inforamtion chapter 4).
 Out of this data it calculates the current **velocity**, **lane** and predicts the further non-ego **position**. This is importend, since we need to know at which position the
-non-ego vehicles will be, when the ego vehicle can execute new maneuvers.
+non-ego vehicles will be, when the ego vehicle is able execute new maneuvers.
 
 * vx: Non ego cars velocity [m/s] in gobal maps x direction.
 * vy: Non ego cars velocity [m/s] in gobal maps y direction.
@@ -38,7 +62,7 @@ velocity calculation of non ege vehicles in `Car.cpp` line `403`.
 ```c
 double check_speed = sqrt(vx * vx + vy * vy);
 ```
-For the beginning a very simple model base approach is used to predict the non-ego vehicle position at the time the ego vehicle finiished the quing waypoint and can execute the 
+For the beginning a very simple model base approach is used to predict the non-ego vehicle position at the time the ego vehicle finished the quing waypoint and can execute the 
 new waypoints.
 
 * prev_size:  represents the waypoint for the ego vehicle that are queing. 
