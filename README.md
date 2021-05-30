@@ -21,7 +21,9 @@ Overview
 ---
 1. Behaviour Planner
 2. Prediction 
-3. Behavior Planer / Costfunctions 
+3. Behavior Planer
+  3.1 Finite State Machine
+  3.2 Costfunctions
 4. Trajectoryplaner
 5. Additional Information from Udacity
 
@@ -32,7 +34,7 @@ on the macrscopiclevel whether its a left or right or change lanes of a highway 
 
 *Personal Note, after you understand a "Behaviour Planer" you will never look at you owen drive skill the same level as before*
 
-The figure below shows the full interactions of a Behovoir Planer. With the control flows and the update times. The green box markes the areas of a Path-Planner. To enable me to focus just on this topic, all the other functions outside the box are provided by Udacity and 
+The figure below shows the full interactions of a Behovoir Planer. With the control flows and the update times. The green box markes the area the is commonly knowns as Path-Planner. To enable me to focus just on this topic, all the other functions outside the box are provided by Udacity and 
 briefly descibed in chapter 5.
 
 <figure>
@@ -85,7 +87,7 @@ in line 407:
 ### Lane Predication:
 The lane predication, is actually a calculation of the current lane. This is done by taking the `d` distance from the non-ego vehicle to the highway center
 into account. And substracting out of this the lane wides of 4m. In addition we assuming all cars are driving in the center of the lane (lane/2 = 2m). *So one example would be then 
-that if the d = 6m. The car have to be in the middle lane. lane wide 4m + 2m center lane = 6m* 
+that if the d = 6m. The car have to be in the middle lane. Lane wide 4m + 2m center lane = 6m.* 
 
 line `393`:
 ```c
@@ -94,7 +96,7 @@ vector<int> predicted_lane{0,1,2};s
 if (d < (2 + 4 * predicted_lane[j] + 2) && d > (2 + 4 * predicted_lane[j] - 2))
 ```
 
-## 2) Behavior Planer / Costfunctions 
+## 3) Behavior Planer / Costfunctions 
 
 One way to implement a transition function is by generating rough trajectories for each accessible "next state" 
 and then finding the best. To "find the best" we generally use cost functions. We can then figure out how costly each rough trajectory is
