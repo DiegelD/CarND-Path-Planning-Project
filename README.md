@@ -120,8 +120,8 @@ discret states. In our project we have five states:
 * PLCR: Prepare Lane Change Right
 * LCR: Lane Change Right
 
-Any pair can be conected by one or more transistions. So from the KL its possible to transtion to PLCL/PCLR and from there to Lane Change 
-or back to KP if transistion is not possible due to a vehicle at the other lane. The LCL / LCR states only transition back to KP.
+Any pair can be conected by one or more transistions. So from the *KL* its possible to transtion to *PLCL/PCLR* and from there to *Lane Change*
+or back to *KP* if transistion is not possible due to a vehicle at the other lane. The *LCL/LCR* states only transition back to *KP*.
 The vector or possible trajectories is handelt by the function `successor_states` in the `Car.cpp` file.
 
 An example of a finte state machine is seen in the image below. In this project as imput we get an vector of possible next states. 
