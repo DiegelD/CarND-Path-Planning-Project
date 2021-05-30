@@ -73,7 +73,8 @@ in line 403:
 ```c
 double check_speed = sqrt(vx * vx + vy * vy);
 ```
-### Postion predication in line 407:
+### Postion predication 
+in line 407:
  
 * prev_size:  represents the waypoint for the ego vehicle that are queing. 
 * 0.2:  5Hz is the run time of the programm. 
@@ -88,7 +89,8 @@ that if the d = 6m. The car have to be in the middle lane.
 
 line `393`:
 ```c
-vector<int> predicted_lane{0,1,2};
+float d = sensor_fusion[i][6]; 
+vector<int> predicted_lane{0,1,2};s
 if (d < (2 + 4 * predicted_lane[j] + 2) && d > (2 + 4 * predicted_lane[j] - 2))
 ```
 
