@@ -140,9 +140,24 @@ For a better readability the code is not describet here in detail. However feel 
 to increase the understanding. 
 
 ### 3.2 Costfunctions
-Desiging costfunctions is difficult and to bring the to cooperate o produce resonable vehicle behavior is hard. Some of the challanges are to solve problems.
-In general there are there posibilieties. Modifing the exciting constfunctions, adding new functions or tweaking the weights. A help here could be regrassion testing. This is part of develpoing safety critical software.
-The costfunctions are desinged in that waht that output varietas between -1 - 1. And the twaeking is then done by weights is balance the costs. 
+Disgining costfunctions is difficult and to bring them to cooperate and to produce resonable vehicle behavior is hard.
+Some of the challanges are to solve problems, wihout unsolving old ones. To ensure this in general are regrassion test are used,
+which is part of developing safety critical software.
+
+In general there are there posibilieties to handle solve costfunction problems:
+* Modifing the exciting constfunctions
+* Adding new costfunctions
+* Tweaking the weights. 
+
+Costfunctions by it selfe are desinged to variite the output between 1 and -1 so that the tuning can be done bye the weights
+line `17` in the `Cost.cpp` file.
+
+```c
+const float REACH_GOAL = pow(10, 1);
+const float EFFICIENCY = pow(10, 4);
+const float OFFROAD    = pow(10, 7);
+const float LANECHANGE = pow(10, 2) * 3;
+```
 
 #### inefficenty_cost
 The single most imported cost function. 
