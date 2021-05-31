@@ -241,9 +241,9 @@ A trajectory is not just a curve the car can follow, but also a time sequence in
 In finding trajectories are many importend things out to watch for. The most importend on is "don`t crash". But alsow passagers comfort, 
 the lateral and lognitinial acceleration and jerck is importend. So the chellenge here is to make it as smooth and elegant as possible.
 
-So the challenge is to find a feasible path as sequence of movements in the configuration space. Which defines all the possible configurations, in 2D this is x,y.
-That moves our car from the actual position defined by localization and sensors to the end position desired from the behavior planner
-considers all the comfort requirement and hits not car. In the image below is the motion planning problem desrcibed.
+So the challenge is to find a feasible path as sequence of movements in the configuration space. ( The space defines all the possible configurations, in 3D this is x,y, theta.)
+That moves the car from the actual position, defined by localization and sensors to the end position, desired from the behavior planner
+and considers all the comfort requirement. In the image below is the general motion planning problem described.
 
 
 <figure>
@@ -251,6 +251,33 @@ considers all the comfort requirement and hits not car. In the image below is th
  <figcaption>
  <p></p> 
  <p style="text-align: center;"> Fig. 4.1: Motion Planning Problem. </p> 
+ </figcaption>
+</figure>
+ <p></p>
+
+To solve this problem there are many **motion planing algorithms**. In the figure below are the main algorithms describt.s
+
+* **Combinational Methods** are usally sliding the problem into small pieces and first solving the motion planning problem by connectic
+this elements. But usally they do not scale well for large envirmonts.
+
+* **Potential Field Methods** are reacting methods. Each obstacle is creating an anti gravit field, which makes it harder for the vehicle 
+to come close. A good idea is to use this on padastrians and bikes to encourace you planning algorithm to find trajetorys away from them.
+The back side is, that they can push us into local minia and away from the best solution.
+
+* **Optimal Control** consits trying to solve the motion palnning problem and the controlling input generation in one algorithm.
+However, its hard to incooperate all of the constrains related to the other vehicles in a good enough way in order to work fast.
+
+* **Sampling Based Methods** Are good to use for this problem, hence they require somewhat easier to compute definition of the free 
+space. They use a collison detection module that probes if the free space to see if a configuration is in collition or not. Also not 
+all part of the free space have to be explored to find a solution. Examples here are the A*-Algorithm.
+
+
+
+<figure>
+ <img src="./readme_data/motion_planing_algorithms.png" width="360" alt="motion_planing_problem" />
+ <figcaption>
+ <p></p> 
+ <p style="text-align: center;"> Fig. 4.2: Motion Planning Algorithms. </p> 
  </figcaption>
 </figure>
  <p></p>
