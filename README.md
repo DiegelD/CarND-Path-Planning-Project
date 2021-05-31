@@ -282,7 +282,7 @@ all part of the free space have to be explored to find a solution. Examples here
 </figure>
  <p></p>
 
-In a more structured enviroment like the higway situation we can also take algorithms that have less computional effort.
+-> In a more structured enviroment like the higway situation we can also take algorithms that have less computional effort.
 So ther would be the [Polynomial Trajectory Generation](https://www.researchgate.net/profile/Moritz-Werling/publication/224156269_Optimal_Trajectory_Generation_for_Dynamic_Street_Scenarios_in_a_Frenet_Frame/links/54f749df0cf210398e9277af/Optimal-Trajectory-Generation-for-Dynamic-Street-Scenarios-in-a-Frenet-Frame.pdf)
 or in our case the problem get splitted up into Acceleration and Jerck control and into generating a smooth trajectory.
 
