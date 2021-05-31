@@ -241,10 +241,10 @@ A trajectory is not just a curve the car can follow, but also a time sequence in
 In finding trajectories are many importend things out to watch for. The most importend on is "don`t crash". But alsow passagers comfort, 
 the lateral and lognitinial acceleration and jerck is importend. So the chellenge here is to make it as smooth and elegant as possible.
 
-The first question to ask how can we solve this all at once and how. This is known as the motion planning problem, which is to find 
-a sequence of movements in the configuration space. Define all possible configuration of our robot, its getting bigger depending on which
-motion planning algorhim we are using and if we are on a 2D or 3D space. As Input for this problem we get a start & end configuration as well the constrains. 
--> In our case this this the actual car positan as start end the desired end position, as well the max jerck and assceleration data. 
+So the challenge is to find a feasible path as sequence of movements in the configuration space. Which defines all the possible configurations, in 2D this is x,y.
+That moves our car from the actual position defined by localization and sensors to the end position desired from the behavior planner
+considers all the comfort requirement and hits not car. In the image below is the motion planning problem desrcibed.
+
 
 <figure>
  <img src="./readme_data/motion_planing_problem.png" width="360" alt="motion_planing_problem" />
