@@ -269,7 +269,7 @@ However, its hard to incooperate all of the constrains related to the other vehi
 
 * **Sampling Based Methods** Are good to use for this problem, hence they require somewhat easier to compute definition of the free 
 space. They use a collison detection module that probes if the free space to see if a configuration is in collition or not. Also not 
-all part of the free space have to be explored to find a solution. Examples here are the A*-Algorithm.
+all part of the free space have to be explored to find a solution. Examples here are the A*-Algorithm or Hybrid A*
 
 
 
@@ -281,6 +281,13 @@ all part of the free space have to be explored to find a solution. Examples here
  </figcaption>
 </figure>
  <p></p>
+
+In a more structured enviroment like the higway situation we can also take algorithms that have less computional effort.
+So ther would be the [Polynomial Trajectory Generation](https://www.researchgate.net/profile/Moritz-Werling/publication/224156269_Optimal_Trajectory_Generation_for_Dynamic_Street_Scenarios_in_a_Frenet_Frame/links/54f749df0cf210398e9277af/Optimal-Trajectory-Generation-for-Dynamic-Street-Scenarios-in-a-Frenet-Frame.pdf)
+or in our case the problem get splitted up into Acceleration and Jerck control and into generating a smooth trajectory.
+
+#### 4.1 Accelearion (+/-) and Jerck Control
+
 
 
 A really helpful resource for doing this project and creating smooth trajectories is
