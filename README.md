@@ -23,7 +23,7 @@ Overview
 2. Prediction 
 3. Behavior Planer
 4. Trajectoryplaner
-5. Additional Information from Udacity
+5. Additional Information from Udacity & Build Instructions
 
 
 ## Intro Behaviour Planer
@@ -284,15 +284,42 @@ all part of the free space have to be explored to find a solution. Examples here
 
 -> In a more structured enviroment like the higway situation we can also take algorithms that have less computional effort.
 So ther would be the [Polynomial Trajectory Generation](https://www.researchgate.net/profile/Moritz-Werling/publication/224156269_Optimal_Trajectory_Generation_for_Dynamic_Street_Scenarios_in_a_Frenet_Frame/links/54f749df0cf210398e9277af/Optimal-Trajectory-Generation-for-Dynamic-Street-Scenarios-in-a-Frenet-Frame.pdf)
-or in our case the problem get splitted up into Acceleration and Jerck control and into generating a smooth trajectory.
+or in this project the divide and rule prinziple is used. So The prolem is splitted into the comfort part
+velocity, Acceleration, Jerck and crash control and into trajectory creation and lateral control.
 
-#### 4.1 Accelearion (+/-) and Jerck Control
+#### 4.1 Velocity, Accelearion (+/-), Jerck and Crash Control
+Bevore choosing the best next state with the costfunction the possible next states condition gets validated. 
+So in the function `get kinematics` file `Car.cpp` depending on the current conditions and the non-ego vehicle conditions the further trajectory states are set.
 
-
-
-A really helpful resource for doing this project and creating smooth trajectories is
+##### Velocity control
+So control the velocity and max. acceleration of the vehicle a pritty nice and simple calculatio is used. 
+On the first step the new max velocity is set to ensure an cofortable max. aceleration and decelreation smaller `10m/s^2`. The variable `max_acceleration` with a actual vale 0f 0.224
+also ensures the the acceleration chang is max `10m/s^2`.
+line `162s`.
+```c
+double max_velocity_accel_limit = this->max_acceleration + this->v;
+```
+The next line is pretty nice. Here the max possibile veloyity in the front is calculated depending on the positons, velocity and acceleration. 
+So with a high distance between the cars the velocity is high smaller the closer the cars get to each other. Line `196`.
+```c
+double max_velocity_in_front = (vehicle_ahead.s - this->s - this->preferred_buffer) + vehicle_ahead.v - 0.5 * (this->a);
+```
+and to ensure that none of thise values exeets the boundaries this smart line of code is introduced `200`.
+```c
+new_velocity = std::min(std::min(max_velocity_in_front,
+                                 max_velocity_accel_limit),
+                                       this->target_speed);
+```
+#### Crash controle switching lane change
+The crash controle workes this way, that before executing the Lane Change the following check with is done
+line `309`. And if a car is detected in the area of lane change, the execution denied.
+```c
+if (((next_lane_vehicle.s > (this->s - 10)) && ((next_lane_vehicle.s - this->s) < 20)) && next_lane_vehicle.lane == new_lane)
+```
+#### Trajektory generation
+To create a smooth trajectory a spline function is used. A really helpful resource for doing this is
 http://kluge.in-chemnitz.de/opensource/spline/, the spline function is in a single hearder file is really easy to use.
-The spline creates a smooth trajectory through given waypoints.  Three waypoints with a distance of `40m` are choosen. This have  profen given the best results between 
+The spline creates a smooth trajectory through given waypoints.  Three waypoints with a distance of `40m` are choosen. This have profen given the best results between 
 smoothnes and accourancy. Lower distances can lead to a too high lateral accerleration, by changing two hihgway lines. And a higher distance leads to an unconsitance path that cant hold the line.
 The car.lane represents the desired lane by the behaviour planer.
 
@@ -310,6 +337,7 @@ To run the simulator on Mac/Linux, first make the binary file executable with th
 ```shell
 sudo chmod u+x {simulator_file_name}
 ```
+## 5 Additional Information provied by Udacity & Build Intructions
 
 ### Goals
 In this project your goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. You will be provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
