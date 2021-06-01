@@ -310,13 +310,13 @@ new_velocity = std::min(std::min(max_velocity_in_front,
                                  max_velocity_accel_limit),
                                        this->target_speed);
 ```
-#### Crash controle switching lane change
+##### Crash controle switching lane change
 The crash controle workes this way, that before executing the Lane Change the following check with is done
 line `309`. And if a car is detected in the area of lane change, the execution denied.
 ```c
 if (((next_lane_vehicle.s > (this->s - 10)) && ((next_lane_vehicle.s - this->s) < 20)) && next_lane_vehicle.lane == new_lane)
 ```
-#### Trajektory generation
+#### 4.2Trajektory generation
 To create a smooth trajectory a spline function is used. A really helpful resource for doing this is
 http://kluge.in-chemnitz.de/opensource/spline/, the spline function is in a single hearder file is really easy to use.
 The spline creates a smooth trajectory through given waypoints.  Three waypoints with a distance of `40m` are choosen. This have profen given the best results between 
