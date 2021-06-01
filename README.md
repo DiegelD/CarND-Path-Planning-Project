@@ -292,9 +292,9 @@ Bevore choosing the best next state with the costfunction the possible next stat
 So in the function `get kinematics` file `Car.cpp` depending on the current conditions and the non-ego vehicle conditions the further trajectory states are set.
 
 ##### Velocity control
-So control the velocity and max. acceleration of the vehicle a pritty nice and simple calculatio is used. 
-On the first step the new max velocity is set to ensure an cofortable max. aceleration and decelreation smaller `10m/s^2`. The variable `max_acceleration` with a actual vale 0f 0.224
-also ensures the the acceleration chang is max `10m/s^2`.
+To control the velocity and max. acceleration of the vehicle a pretty nice and simple calculation is used. 
+On the first step the new max velocity is set to ensure an cofortable max. aceleration and decelreation. The variable `max_acceleration` with a actual vale 0f 0.224
+also ensures an acceleration change of max `10m/s^2`.
 line `162s`.
 ```c
 double max_velocity_accel_limit = this->max_acceleration + this->v;
@@ -304,24 +304,24 @@ So with a high distance between the cars the velocity is high smaller the closer
 ```c
 double max_velocity_in_front = (vehicle_ahead.s - this->s - this->preferred_buffer) + vehicle_ahead.v - 0.5 * (this->a);
 ```
-and to ensure that none of thise values exeets the boundaries this smart line of code is introduced `200`.
+And to ensure that none of this values exeets the boundaries this smart line of code is introduced in line `200`.
 ```c
 new_velocity = std::min(std::min(max_velocity_in_front,
                                  max_velocity_accel_limit),
                                        this->target_speed);
 ```
-##### Crash controle switching lane change
-The crash controle workes this way, that before executing the Lane Change the following check with is done
-line `309`. And if a car is detected in the area of lane change, the execution denied.
+##### Crash controle at lane change
+Before executing the Lane Change the following check is done in line `309`. And if a car is detected in the area of lane change, 
+the execution is denied.
 ```c
 if (((next_lane_vehicle.s > (this->s - 10)) && ((next_lane_vehicle.s - this->s) < 20)) && next_lane_vehicle.lane == new_lane)
 ```
-#### 4.2Trajektory generation
+#### 4.2 Trajektory generation
 To create a smooth trajectory a spline function is used. A really helpful resource for doing this is
 http://kluge.in-chemnitz.de/opensource/spline/, the spline function is in a single hearder file is really easy to use.
 The spline creates a smooth trajectory through given waypoints.  Three waypoints with a distance of `40m` are choosen. This have profen given the best results between 
-smoothnes and accourancy. Lower distances can lead to a too high lateral accerleration, by changing two hihgway lines. And a higher distance leads to an unconsitance path that cant hold the line.
-The car.lane represents the desired lane by the behaviour planer.
+smoothnes and accourancy. Lower distances can lead to a too high lateral accerleration, when changing two hihgway lines. And a higher distance leads to an unconsitance path that cant hold the line.
+  The car.lane represents the desired lane by the behaviour planer.
 
 in `main.cpp`line `182`.
 ```c
