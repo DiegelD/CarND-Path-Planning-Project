@@ -95,10 +95,10 @@ vector<int> predicted_lane{0,1,2};s
 if (d < (2 + 4 * predicted_lane[j] + 2) && d > (2 + 4 * predicted_lane[j] - 2))
 ```
 
-## 3) Behavior Planer / Cost-functions 
+## 3) Behavior Planer / Cost functions 
 A great analogy of the Behavior Planer is that it takes the responsibility like a navigator on the passenger seat. It's gives the commands where to go and when to change lanes.
 However the navigator is not responsible for the safety and execution.<br/>
-So two big parts are considers here, one is a **State Machine** that tells wichs maneuvers we should take and **Cost-functions** that weighing the possible maneuvers about the requirements
+So two big parts are considers here, one is a **State Machine** that tells wichs maneuvers we should take and **Cost functions** that weighing the possible maneuvers about the requirements
 of the behavior planning.
 
 
@@ -140,17 +140,17 @@ best next state.
 For a better readability the code is not described here in detail. However feel free to look into the code, comments are made there 
 to increase the understanding. 
 
-### 3.2 Cost-functions
-Designing cost-functions is difficult and to bring them to cooperate and to produce reasonable vehicle behavior is hard.
+### 3.2 Cost functions
+Designing cost functions is difficult and to bring them to cooperate and to produce reasonable vehicle behavior is hard.
 Some of the challenges are to solve problems, without unsolving old ones. To ensure this in general are regression test are used,
 which is part of developing safety critical software.
 
-In general there are there possibilities to handle solve cost-function problems:
-* Modifying the exciting const-functions
-* Adding new cost-functions
+In general there are there possibilities to handle solve cost function problems:
+* Modifying the exciting const functions
+* Adding new cost functions
 * Tweaking the weights. 
 
-Cost-functions by it self are designed to variety the output between 1 and -1 so that the tuning can be done bye the weights
+Cost functions by it self are designed to variety the output between 1 and -1 so that the tuning can be done bye the weights
 line `17` in the `Cost.cpp` file.
 
 ```c
@@ -189,7 +189,7 @@ in `Cost.cpp`line `42 & 46`.
 int delta_d = 2.0 * car.goal_lane - data["intended_lane"] - data["final_lane"];
 cost = 1 - 2 * exp(-(abs(delta_d) / distance));
 ```
-#### Off road Cost (Safety)
+#### Off Road Cost (Safety)
 During the development stage, the ego car left the desired path to drive off road. Since there is never traffic jam. To penalize this behavior 
 all paths that will leave the road will get and enormous cost.
 
@@ -224,7 +224,7 @@ in `Cost.cpp`line `146`.
 
 ## 4) Trajectory planer
 A trajectory is not just a curve the car can follow, but also a time sequence in which we say how fast the car should go.
-In finding trajectories are many imported things out to watch for. The most imported on is "don`t crash". But also passages comfort, 
+In finding trajectories are many imported things out to watch for. The most imported on is **"don`t crash"**.  But also passages comfort, 
 the lateral and longitudinal acceleration and jerk is imported. So the challenge here is to make it as smooth and elegant as possible.
 
 So the challenge is to find a feasible path as sequence of movements in the configuration space. ( The space defines all the possible configurations, in 3D this is x,y, theta.)
