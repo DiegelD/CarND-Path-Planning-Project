@@ -76,7 +76,7 @@ in line 403:
 ```c
 double check_speed = sqrt(vx * vx + vy * vy);
 ```
-### Postion predication 
+### Position predication 
 in line 407:
  
 * prev_size:  represents the waypoint for the ego vehicle that are queuing. 
