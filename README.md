@@ -26,8 +26,10 @@ Overview
 5. Additional Information from Udacity & Build Instructions
 
 ## Intro Behavior Planer
-One of the most challenging topics for the self driving cars. The heard of it is a finite State Machine that govern the complexity of the driving care. Here its not about what exact input for the steering angle we are given its more about
-on the macroscopic level whether it's a left or right or change lanes of a highway or take an exit.
+In self-driving  cars behavior selection, is on of the most of the most challenging topics. Where the topic is, 
+what to do next? And not on this minute level of what  exact control input to give a steering wheel but more of a macroscopic level
+whether it's a left or right or change lanes of a highway or take an exit. So a Finite Sate Machine, that govern the complex behavior of a 
+self driving car. 
 
 *Personal Note, after you understand a "Behavior Planer" you will never look at you own drive skill the same level as before*
 
@@ -95,7 +97,7 @@ vector<int> predicted_lane{0,1,2};s
 if (d < (2 + 4 * predicted_lane[j] + 2) && d > (2 + 4 * predicted_lane[j] - 2))
 ```
 
-## 3) Behavior Planer / Cost functions 
+## 3) Behavior Planer / Costnfunctions 
 A great analogy of the Behavior Planer is that it takes the responsibility like a navigator on the passenger seat. It's gives the commands where to go and when to change lanes.
 However the navigator is not responsible for the safety and execution.<br/>
 So two big parts are considers here, one is a **State Machine** that tells wichs maneuvers we should take and **Cost functions** that weighing the possible maneuvers about the requirements
