@@ -221,21 +221,7 @@ in `Cost.cpp`line `146`.
     cost = 1;
   }
 ```
-#### Velocity control
-To control the velocity and max. acceleration of the vehicle a pretty nice and simple calculation is used. 
-On the first step the new max velocity is set to ensure a comfortable acceleration and deceleration smaller `10m/s^2`.
-```c
-double max_velocity_accel_limit = this->max_acceleration + this->v;
-```
 
-```c
-double max_velocity_in_front = (vehicle_ahead.s - this->s - this->preferred_buffer) + vehicle_ahead.v - 0.5 * (this->a);
-```
-```c
-new_velocity = std::min(std::min(max_velocity_in_front,
-                                 max_velocity_accel_limit),
-                                       this->target_speed);
-```
 ## 4) Trajectory planer
 A trajectory is not just a curve the car can follow, but also a time sequence in which we say how fast the car should go.
 In finding trajectories are many imported things out to watch for. The most imported on is "don`t crash". But also passages comfort, 
@@ -292,11 +278,10 @@ the possible next states condition gets validated.
 So in the function `get kinematics` file `Car.cpp` depending on the current conditions and the non-ego vehicle conditions the further traffic adapted trajectory states are set.
 
 ##### Velocity and distance control
-To control the velocity and max. acceleration of the vehicle, pretty nice and simple calculations are used in the following. 
+To control the velocity and max. acceleration of the vehicle some pretty nice and simple calculations are used in the following. 
 On the first step the new max velocity is set to ensure a comfortable max. acceleration and deceleration. The variable `max_acceleration` with a actual vale 0f 0.224
 ensures a change rate of max `10m/s^2`.
 line `162s`.
-
 ```c
 double max_velocity_accel_limit = this->max_acceleration + this->v;
 ```
