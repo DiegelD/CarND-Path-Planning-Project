@@ -97,7 +97,7 @@ vector<int> predicted_lane{0,1,2};s
 if (d < (2 + 4 * predicted_lane[j] + 2) && d > (2 + 4 * predicted_lane[j] - 2))
 ```
 
-## 3) Behavior Planer / Costnfunctions 
+## 3) Behavior Planer / Cost functions 
 A great analogy of the Behavior Planer is that it takes the responsibility like a navigator on the passenger seat. It's gives the commands where to go and when to change lanes.
 However the navigator is not responsible for the safety and execution.<br/>
 So two big parts are considers here, one is a **State Machine** that tells wichs maneuvers we should take and **Cost functions** that weighing the possible maneuvers about the requirements
@@ -180,8 +180,8 @@ of the goal lane also becomes larger as the vehicle approaches the goal. This en
 s
 ![equation](https://latex.codecogs.com/gif.image?\dpi{130}&space;cost=1-e^{-\frac{\left&space;|&space;\Delta&space;d&space;\right|}{\Delta&space;s})
 
-* Intended lane: the intended lane for the given behavior. For PLCR, PLCL, LCR, and LCL, this would be the one lane over from the current lane.
-* Final lane: the immediate resulting lane of the given behavior. For LCR and LCL, this would be one lane over.
+* Intended lane: the intended lane for the given behavior. For *PLCR*, *PLCL*, *LCR*, and *LCL*, this would be the one lane over from the current lane.
+* Final lane: the immediate resulting lane of the given behavior. For *LCR* and *LCL*, this would be one lane over.
 * Δs distance to the goal.
 * The goal lane.
 
