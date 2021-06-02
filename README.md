@@ -117,11 +117,11 @@ of the behavior planning.
 A Finite State Machine (*FSM*) is a way to solve the Behavior Planning Problem. It makes decisions on a finite set of
 discrete states. In our project we have five states:
 
-* KL: Keep Lane
-* PLCL: Prepare Lane Change Left
-* LCL: Lane Change Left
-* PLCR: Prepare Lane Change Right
-* LCR: Lane Change Right
+* **KL**: Keep Lane
+* **PLCL**: Prepare Lane Change Left
+* **LCL**: Lane Change Left
+* **PLCR**: Prepare Lane Change Right
+* **LCR**: Lane Change Right
 
 Any pair can be connected by one or more transitions. So from the *KL* its possible to transition to *PLCL/PCLR* and from there to *Lane Change*
 or back to *KP* if transition is not possible due to a vehicle at the other lane. The *LCL/LCR* states only transition back to *KP*.
