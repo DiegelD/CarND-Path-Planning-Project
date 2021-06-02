@@ -148,7 +148,7 @@ Some of the challenges are to solve problems, without unsolving old ones. To ens
 which is part of developing safety critical software.
 
 In general there are there possibilities to handle solve cost function problems:
-* Modifying the exciting const functions
+* Modifying the exciting cost functions
 * Adding new cost functions
 * Tweaking the weights. 
 
