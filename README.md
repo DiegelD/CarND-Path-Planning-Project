@@ -243,7 +243,7 @@ and considers all the comfort requirement. In the image below is the general mot
 </figure>
  <p></p>
 
-To solve this problem there are many **motion planing algorithms**. In the figure below are the main algorithms described
+To solve this problem there are many **motion planning algorithms**. In the figure below are the main algorithms described
 
 * **Combinational Methods** are usually sliding the problem into small pieces and first solving the motion planning problem by connecting
 this elements. But usually they do not scale well for large environments.
@@ -282,14 +282,15 @@ So in the function `get kinematics` file `Car.cpp` depending on the current cond
 ##### Velocity and distance control
 To control the velocity and max. acceleration of the vehicle some pretty nice and simple calculations are used in the following. 
 On the first step the new max velocity is set to ensure a comfortable max. acceleration and deceleration. The variable `max_acceleration` with a actual vale 0f 0.224
-ensures a change rate of max `10m/s^2`.
-line `162s`.
+ensures a change rate of max. `10m/s^2`.
+Line `162s`.
 ```c
 double max_velocity_accel_limit = this->max_acceleration + this->v;
 ```
 The next line is pretty nice. The velocity is calculated based on the distance of the front car. So we can ensure 
-that both conditions are adapted for the ego car. So for example if the distance to the car in the front is high the velocity of the go car will higher than the front car velocity.
-And transition linear with a decreasing distance until a minimum distance is reached and our car is adapting the velocity of the front car. 
+that both conditions, velocity and distance are adapted for the ego car. So for example if the distance to the car in the front is high 
+the velocity of the ego car will be higher than the front car`s velocity.
+And transition linear with a decreasing distance until a minimum distance is reached and our car is adapting 1:1 the velocity of the front car. 
 Line `196`.
 ```c
 double max_velocity_in_front = (vehicle_ahead.s - this->s - this->preferred_buffer) + vehicle_ahead.v - 0.5 * (this->a);
@@ -300,7 +301,7 @@ new_velocity = std::min(std::min(max_velocity_in_front,
                                  max_velocity_accel_limit),
                                        this->target_speed);
 ```
-##### Crash controls at lane change
+##### Crash control at lane change
 Before executing the Lane Change the following check is done in line `309`. And if a car is detected in the area of lane change, 
 the execution is denied.
 ```c
