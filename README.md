@@ -93,7 +93,7 @@ that if the d = 6m. The car have to be in the middle lane. Lane wide 4m + 2m cen
 line `393`:
 ```c
 float d = sensor_fusion[i][6]; 
-vector<int> predicted_lane{0,1,2};s
+vector<int> predicted_lane{0,1,2};
 if (d < (2 + 4 * predicted_lane[j] + 2) && d > (2 + 4 * predicted_lane[j] - 2))
 ```
 
