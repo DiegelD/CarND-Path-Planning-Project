@@ -104,7 +104,7 @@ will change lanes so that our Planner would be more robust
 
 
 ## 3) Behavior Planner / Cost functions 
-A great analogy of the Behavior Planner is that it takes the responsibility like a navigator on the passenger seat. It's gives the commands where to go and when to change lanes.
+A great analogy for the Behavior Planner is that it inherent the responsibility of a navigator on the passenger seat. It's gives the commands where to go and when to change lanes.
 However the navigator is not responsible for the safety and execution.<br/>
 So two big parts are considers here, one is a **State Machine** that tells wichs maneuvers we should take and **Cost functions** that weighing the possible maneuvers about the requirements
 of the behavior planning.
