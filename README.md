@@ -21,12 +21,12 @@ Overview
 ---
 1. Intro Behavior Planner
 2. Prediction 
-3. Behavior Planer
-4. Trajectory planer
+3. Behavior Planner
+4. Trajectory Planner
 5. Discussion
 6. Appendix: *Build Instructions & Simulator* ...
 
-## Intro Behavior Planer
+## Intro Behavior Planner
 In self-driving  cars behavior selection, is on of the most of the most challenging topics.
 Simplified, the topic is **what to do next**? And not on a minute level of what  exact control input to give a to steering wheel but more of a macroscopic level
 whether it's a left or right or change lanes of a highway or take an exit.
@@ -43,7 +43,7 @@ briefly described in the Appendix.
  <img src="./readme_data/BC_overview.png" width="360" alt="BehaviourControl" />
  <figcaption>
  <p></p> 
- <p style="text-align: center;"> Fig. 1: Behavior Planer: Schematic description of the control flows and timing. </p> 
+ <p style="text-align: center;"> Fig. 1: Behavior Planner: Schematic description of the control flows and timing. </p> 
  </figcaption>
 </figure>
  <p></p>
@@ -238,7 +238,7 @@ in `Cost.cpp`line `146`.
   }
 ```
 
-## 4) Trajectory planer
+## 4) Trajectory Planner
 A trajectory is not just a curve the car can follow, but also a time sequence in which we say how fast the car should go.
 In finding trajectories are many imported things out to watch for. The most imported on is **"don`t crash"**.  But also passages comfort, 
 the lateral and longitudinal acceleration and jerk is imported. So the challenge here is to make it as smooth and elegant as possible.
