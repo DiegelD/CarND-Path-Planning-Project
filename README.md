@@ -23,7 +23,8 @@ Overview
 2. Prediction 
 3. Behavior Planer
 4. Trajectory planer
-5. Additional Information from Udacity & Build Instructions
+5. Discussion
+6. Build Instructions & Simulator & Additional Information from Udacity
 
 ## Intro Behavior Planer
 In self-driving  cars behavior selection, is on of the most of the most challenging topics. Where the topic is, 
@@ -332,22 +333,11 @@ vector<double> next_wp1 = getXY(car.s + 80, (2 + 4 * car.lane), map_waypoints_s,
 vector<double> next_wp2 = getXY(car.s + 120, (2 + 4 * car.lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
 ```
 
-### Simulator.
-You can download the Term3 Simulator which contains the Path Planning Project from the [releases tab (https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2).  
+## 5) Dicussion:
+Prediction replaced by a hybride approach modle based and data driven.
+Trajectorirs replaced by JMT -> Paper
 
-To run the simulator on Mac/Linux, first make the binary file executable with the following command:
-```shell
-sudo chmod u+x {simulator_file_name}
-```
-## 5 Additional Information provied by Udacity & Build Intructions
-
-### Goals
-In this project your goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. You will be provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
-
-#### The map of the highway is in data/highway_map.txt
-Each waypoint in the list contains  [x,y,s,dx,dy] values. x and y are the waypoint's map coordinate position, the s value is the distance along the road to get to that waypoint in meters, the dx and dy values define the unit normal vector pointing outward of the highway loop.
-
-The highway's waypoints loop around so the frenet s value, distance along the road, goes from 0 to 6945.554.
+## 6) Build Instructions & Simulator & Additional Information from Udacity
 
 ## Basic Build Instructions
 
@@ -356,7 +346,21 @@ The highway's waypoints loop around so the frenet s value, distance along the ro
 3. Compile: `cmake .. && make`
 4. Run it: `./path_planning`.
 
-Here is the data provided from the Simulator to the C++ Program
+### Simulator.
+You can download the Term3 Simulator which contains the Path Planning Project from the [releases tab (https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2).  
+
+To run the simulator on Mac/Linux, first make the binary file executable with the following command:
+```shell
+sudo chmod u+x {simulator_file_name}
+```
+
+### Goals
+In this project your goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. You will be provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
+
+#### The map of the highway is in data/highway_map.txt
+Each waypoint in the list contains  [x,y,s,dx,dy] values. x and y are the waypoint's map coordinate position, the s value is the distance along the road to get to that waypoint in meters, the dx and dy values define the unit normal vector pointing outward of the highway loop.
+
+The highway's waypoints loop around so the frenet s value, distance along the road, goes from 0 to 6945.554.
 
 #### Main car's localization Data (No Noise)
 
@@ -400,11 +404,6 @@ the path has processed since last time.
 ## Dicussion:
 Prediction replaced by a hybride approach modle based and data driven.
 Trajectorirs replaced by JMT -> Paper
-
-
-## Tips
-
-A really helpful resource for doing this project and creating smooth trajectories was using http://kluge.in-chemnitz.de/opensource/spline/, the spline function is in a single hearder file is really easy to use.
 
 ---
 
