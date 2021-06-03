@@ -120,7 +120,8 @@ and the other one are **Cost functions** that tells which is the best possible n
  <p></p>
 
 ### 3.1 Finite State Machine
-A Finite State Machine (*FSM*) is a way to solve the Behavior Planning Problem. It makes decisions on a finite set of
+A Finite State Machine (*FSM*) is a way to solve the [Behavior Planning Problem](https://www.cs.cmu.edu/afs/cs/project/jair/pub/volume9/mazer98a-html/node2.html).
+It makes decisions on a finite set of
 discrete states. In our project we have five states:
 
 * **KL**: Keep Lane
