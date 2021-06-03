@@ -124,20 +124,8 @@ discrete states. In our project we have five states:
 * **LCR**: Lane Change Right
 
 Any pair can be connected by one or more transitions. So from the *KL* its possible to transition to *PLCL/PCLR* and from there to *Lane Change*
-or back to *KP* if transition is not possible due to a vehicle at the other lane. The *LCL/LCR* states only transition back to *KP*.
-The vector of possible trajectories is handelt by the function `successor_states` line `92` in the `Car.cpp` file and is the input for the *FSM*.
-Seen in the example of a *FSM* in the image below.
-
-The transition between the states is handled by a transitions function, called **Chose next state** line `43` in the `Car.cpp` file . Wich takes the input and calculates with the cost-functions the 
-best next state. 
-<figure>
- <img src="./readme_data/finite_state_machine.png" width="360" alt="finite_state_machine" />
- <figcaption>
- <p></p> 
- <p style="text-align: center;"> Fig. 3.2: Example Finite State Overview. </p> 
- </figcaption>
-</figure>
- <p></p>
+or back to *KP*, if transition is not possible due to a vehicle at the other lane. The *LCL/LCR* states only transition back to *KP*.
+A visualization of the projects *FSM* with its possible transitions is drawn in the Fig. below.
 
 <figure>
  <img src="./readme_data/finite_state_machine_2.png" width="360" alt="finite_state_machine_2" />
@@ -148,7 +136,18 @@ best next state.
 </figure>
  <p></p>
 
-As visualization the *FSM* with its possible transitions of this project is drawn in Fig. 3.3.
+
+The vector of possible trajectories is handelt by the function `successor_states` line `92` in the `Car.cpp` file and is the input for the *FSM*.
+Seen in the example of a *FSM* in the image below. The transition between the states is handled by a transitions function, called **Chose next state** line `43` in the `Car.cpp` file . Wich takes the input and calculates with the cost-functions the 
+best next state. 
+<figure>
+ <img src="./readme_data/finite_state_machine.png" width="360" alt="finite_state_machine" />
+ <figcaption>
+ <p></p> 
+ <p style="text-align: center;"> Fig. 3.2: Example Finite State Overview. </p> 
+ </figcaption>
+</figure>
+ <p></p>
 
 For a better readability the code is not described here in detail. However feel free to look into the code, comments are made there 
 to increase the understanding. 
