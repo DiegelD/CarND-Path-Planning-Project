@@ -147,7 +147,7 @@ best next state.
  <p style="text-align: center;"> Fig. 3.3: Finite State of this Project. </p> 
  </figcaption>
 </figure>
- <p></p>
+ <p></p>s
 
 As visualization, the *FSM* with its possible transitions of this project is drawn in Fig. 3.3. For a better readability the code is not described here in detail. However feel free to look into the code, comments are made there 
 to increase the understanding. 
@@ -157,7 +157,7 @@ Designing cost functions is difficult and to bring them to cooperate and to prod
 Some of the challenges are to solve problems, without unsolving old ones. To ensure this in general are regression test are used,
 which is part of developing safety critical software.
 
-In general there are there possibilities to handle solve cost function problems:
+In general there are there possibilities to handle and solve cost function problems:
 * Modifying the exciting cost functions
 * Adding new cost functions
 * Tweaking the weights. 
@@ -174,7 +174,7 @@ const float LANECHANGE = pow(10, 2) * 3;
 
 #### Inefficiency Cost (Target Efficiency)
 The single most imported cost function. 
-Cost becomes higher for trajectories with intended lane and final lane, that have traffic slower than traget speed.
+The cost becomes higher for trajectories with *intended lane* and *final lane*, that have traffic slower than traget speed.
 
 * proposed_speed_intended: Intended line speed
 * proposed_speed_final:    Last line speed 
