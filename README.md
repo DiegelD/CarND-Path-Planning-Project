@@ -145,10 +145,10 @@ discrete states. In the Image below is an overview of the shematic work of a *FS
 
 Any pair can be connected by one or more transitions. So from the *KL* its possible to transition to *PLCL/PCLR* and from there to *Lane Change*
 or back to *KL*, if transition is not possible due to a vehicle at the other lane. The *LCL/LCR* states only transition back to *KL*.
+In figure 3.3 you can see the project specific tranisistion in the *FSM*.
+
 The vector of possible next trajectories is handelt by the function `successor_states` line `92` in the `Car.cpp` file and is the input for the *FSM*.
-
-
-The transition between the states is handled by the transitions function **Chose next state** line `43`. Wich takes the input and calculates with the cost-functions the 
+The transition between the states is handled by the transitions function **Chose next state** in line `43`. That takes the input and calculates the best next states with the cost functions.
 best next state. 
 <figure>
  <img src="./readme_data/finite_state_machine_2.png" width="360" alt="finite_state_machine_2" />
@@ -159,7 +159,7 @@ best next state.
 </figure>
  <p></p>
 
-As visualization, the *FSM* with its possible transitions of this project is drawn in Fig. 3.3. For a better readability the code is not described here in detail. However feel free to look into the code, comments are made there 
+For a better readability the code is not described here in detail. However feel free to look into the code, comments are made there 
 to increase the understanding. 
 
 ### 3.2 Cost Functions
