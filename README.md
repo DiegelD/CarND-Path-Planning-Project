@@ -70,7 +70,7 @@ Anyhow for the beginning a very simple model base approach is used to predict th
 new waypoints. With a low effort we got so a quite robust prediction for most use-cases of our highway pilot. Left out are prediction of other cars lane changes.
 To improve this, in the further a Hybrid Naive-Bayes approach could be used.
 
-### Velocity calculation 
+### Velocity Calculation 
 in line 403:
 
 * vx: Non ego cars velocity [m/s] in global maps x direction.
@@ -79,7 +79,7 @@ in line 403:
 ```c
 double check_speed = sqrt(vx * vx + vy * vy);
 ```
-### Position prediction 
+### Position Prediction 
 in line 407:
  
 * prev_size:  represents the waypoint for the ego vehicle that are queuing. 
@@ -88,8 +88,8 @@ in line 407:
 ```c
  check_car_s += ((double)prev_size * .02 * check_speed);
 ```
-### Lane Predication:
-The lane predication, is actually a calculation of the current lane. This is done by taking the `d` distance from the non-ego vehicle to the highway center
+### Lane Prediction:
+The lane prediction, is actually a calculation of the current lane. This is done by taking the `d` distance from the non-ego vehicle to the highway center
 into account. And subtracting out of this the lane wides of 4m. In addition we assuming all cars are driving in the center of the lane (lane/2 = 2m). *So one example would be then 
 that if the d = 6m. The car have to be in the middle lane. Lane wide 4m + 2m center lane = 6m.* 
 
