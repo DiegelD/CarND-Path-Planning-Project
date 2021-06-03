@@ -49,9 +49,9 @@ briefly described in the Appendix.
  <p></p>
 
 ## 2) Prediction
-What makes predictions interesting but also but also challenging is its inherently multi-modal. Means 
+What makes predictions interesting but also but also challenging is its inherently multi-multimodality. Means 
 for example where will be a non ego car in the next 5ms (Figure 2 first image).
-Prediction is done in general ether model based or data driven based. Lately also Hybride approaches occurred.
+Prediction is done in general ether **model based** or **data driven** based. Lately also Hybride approaches occurred.
 * Model based approaches uses mathematical models to predict the trajectories.
 * Data driven approaches relay on machine learning an examples to learn from. 
 
@@ -65,8 +65,8 @@ Prediction is done in general ether model based or data driven based. Lately als
 </figure>
  <p></p>
 
-The upper figure the second image shows the control flow of a general prediction function. Also our prediction function **generate_predictions** in `Car.cpp` file gets the same inputs. 
-Anyhow for the beginning a very simple model base approach is used to predict the non-ego vehicle position, velocity and lane at the time the ego vehicle finished the quing waypoint and can execute the 
+The second image shows the control flow of a general prediction function. Also our prediction function **generate_predictions** in `Car.cpp` file gets the same inputs. 
+Anyhow for the beginning a very simple model base approach is used to predict the non-ego vehicle position, velocity and lane at the time the ego vehicle can execute the 
 new waypoints. With a low effort we got so a quite robust predication for most use-cases of our highway pilot. Left out are predication of other cars lane changes.
 To improve this, in the further a Hybrid Naive-Bayes approach could be used.
 
