@@ -190,7 +190,7 @@ by taking the lane speed into account. So the cost becomes higher for trajectori
 * **proposed_speed_final**:    Last line speed 
 * **car.target_speed**:        Target Speed. In our case 49.5mph
 
-in `Cost.cpp`line `81`.
+in `Cost.cpp`file, line `81`.
  ```c
 float cost = (2.0 * car.target_speed - proposed_speed_intended - proposed_speed_final) / car.target_speed;
 ```
@@ -198,7 +198,7 @@ float cost = (2.0 * car.target_speed - proposed_speed_intended - proposed_speed_
 #### Distance to goal (Comfort/ Feasibility)
 The cost increases with both the distance of intended lane from the goal and the distance of the final lane from the goal. The cost of being out 
 of the goal lane also becomes larger as the vehicle approaches the goal. This ensures that the vehicle is in the right lane by reaching the goal.
-s
+
 ![equation](https://latex.codecogs.com/gif.image?\dpi{130}&space;cost=1-e^{-\frac{\left&space;|&space;\Delta&space;d&space;\right|}{\Delta&space;s})
 
 * **Intended lane**: the intended lane for the given behavior. For *PLCR*, *PLCL*, *LCR*, and *LCL*, this would be the one lane over from the current lane.
