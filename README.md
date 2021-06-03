@@ -99,6 +99,10 @@ float d = sensor_fusion[i][6];
 vector<int> predicted_lane{0,1,2};
 if (d < (2 + 4 * predicted_lane[j] + 2) && d > (2 + 4 * predicted_lane[j] - 2))
 ```
+Left out of the current prediction are other cars lane changes.
+To improve this in the further a Hybrid Naive-Bayes approach could be used, so that we could also predict when a non-ego car 
+will change lanes so that our Planner would be more robust
+
 
 ## 3) Behavior Planer / Cost functions 
 A great analogy of the Behavior Planer is that it takes the responsibility like a navigator on the passenger seat. It's gives the commands where to go and when to change lanes.
