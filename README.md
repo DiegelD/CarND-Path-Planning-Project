@@ -121,8 +121,8 @@ and the other one are **Cost Functions** that tells which is the best possible n
 
 ### 3.1 Finite State Machine
 A Finite State Machine (*FSM*) is a way to solve the [Behavior Planning Problem](https://www.cs.cmu.edu/afs/cs/project/jair/pub/volume9/mazer98a-html/node2.html).
-It gets as input several possible next trajectories and based on a transistion function it makes decisions on a finite set of
-discrete states. In the Image below is an overview of the shematic work of a *FSM*.
+It gets as input several possible next trajectories and based on a transition function it makes decisions on a finite set of
+discrete states. In the Image below is an overview of the schematic work of a *FSM*.
 
 <figure>
  <img src="./readme_data/finite_state_machine.png" width="360" alt="finite_state_machine" />
@@ -144,12 +144,13 @@ discrete states. In the Image below is an overview of the shematic work of a *FS
 * **LCR**: Lane Change Right
 
 Any pair can be connected by one or more transitions. So from the *KL* its possible to transition to *PLCL/PCLR* and from there to *Lane Change*
-or back to *KL*, if transition is not possible due to a vehicle at the other lane. The *LCL/LCR* states only transition back to *KL*.
-In figure 3.3 you can see the project specific tranisistion in the *FSM*.
+or back to *KL*, if transition is not possible due to a vehicle at the other lane. The *LCL/LCR* states can only transition back to *KL*.
+In figure 3.3 you can see the project specific *FSM* behavior.
 
-The vector of possible next trajectories is handelt by the function `successor_states` line `92` in the `Car.cpp` file and is the input for the *FSM*.
-The transition between the states is handled by the transitions function **Chose next state** in line `43`. That takes the input and calculates the best next states with the cost functions.
-best next state. 
+The function `successor_states` line `92` in the `Car.cpp` file  creates the input as possible next trajectories for the *FSM*
+and the transition transitions function **Chose next state** in line `43` handles the shifts between the states by calculating the best
+next state with the cost functions.
+
 <figure>
  <img src="./readme_data/finite_state_machine_2.png" width="360" alt="finite_state_machine_2" />
  <figcaption>
@@ -159,7 +160,7 @@ best next state.
 </figure>
  <p></p>
 
-For a better readability the code is not described here in detail. However feel free to look into the code, comments are made there 
+For a better readability the code is **not** described here in detail. However feel free to look into the code, comments are made there 
 to increase the understanding. 
 
 ### 3.2 Cost Functions
