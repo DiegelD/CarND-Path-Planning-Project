@@ -23,8 +23,7 @@ Overview
 2. Prediction 
 3. Behavior Planner
 4. Trajectory Planner
-5. Discussion
-6. Appendix: *Build Instructions & Simulator* ...
+5. Appendix: *Build Instructions & Simulator* ...
 
 ## Intro Behavior Planner
 In self-driving  cars behavior selection, is on of the most challenging topics.
@@ -254,7 +253,7 @@ the lateral and longitudinal acceleration and jerk is imported. So the challenge
 
 The biggest challenge is to find a feasible path as sequence of movements in the configuration space. ( The space defines all the possible configurations, in 3D this is x,y, theta.)
 That moves the car from the actual position, defined by localization and sensors to the end position, desired from the behavior planner
-and considers all the comfort requirement. In the image below is the general[motion planning problem](https://en.wikipedia.org/wiki/Motion_planning).
+and considers all the comfort requirement. In the image below is the general [motion planning problem](https://en.wikipedia.org/wiki/Motion_planning).
 described
 
 <figure>
@@ -344,11 +343,7 @@ vector<double> next_wp1 = getXY(car.s + 80, (2 + 4 * car.lane), map_waypoints_s,
 vector<double> next_wp2 = getXY(car.s + 120, (2 + 4 * car.lane), map_waypoints_s, map_waypoints_x, map_waypoints_y);
 ```
 
-## 5) Dicussion:
-Prediction replaced by a hybride approach modle based and data driven.
-Trajectorirs replaced by JMT -> Paper
-
-## 6) Build Instructions & Simulator & Additional Information from Udacity
+## 5) Build Instructions & Simulator & Additional Information from Udacity
 
 ## Basic Build Instructions
 
