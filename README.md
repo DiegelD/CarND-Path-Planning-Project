@@ -27,8 +27,8 @@ Overview
 6. Appendix: *Build Instructions & Simulator* ...
 
 ## Intro Behavior Planer
-In self-driving  cars behavior selection, is on of the most of the most challenging topics. Where the topics is, 
-what to do next? And not on this minute level of what  exact control input to give a steering wheel but more of a macroscopic level
+In self-driving  cars behavior selection, is on of the most of the most challenging topics.
+Simplified, the topic is **what to do next**? And not on this minute level of what  exact control input to give a steering wheel but more of a macroscopic level
 whether it's a left or right or change lanes of a highway or take an exit. So a Finite Sate Machine, that govern the complex behavior of a 
 self driving car. 
 
