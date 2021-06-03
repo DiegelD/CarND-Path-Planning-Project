@@ -108,8 +108,7 @@ A great analogy for the Behavior Planner is that it inherent the responsibility 
 It gives the commands where to go and when to change lanes.
 However the navigator is not responsible for the safety and maneuver execution.<br/>
 To bring the Planner alive, two big parts are needed: One is a **State Machine** that govern the complex behavior of the self driving car
-and the other one are **Cost functions** that tell which is the best possible next behavior.
-
+and the other one are **Cost functions** that tells which is the best possible next behavior.
 
 <figure>
  <img src="./readme_data/behaviour_planning_overview.png" width="360" alt="Behavior Planning Overview" />
