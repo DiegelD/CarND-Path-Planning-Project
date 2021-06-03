@@ -67,8 +67,7 @@ Prediction is done in general ether **model based** or **data driven** based. La
 
 The second image shows the control flow of a general prediction function. Also our function **generate_predictions** in `Car.cpp` file gets the same inputs. 
 Anyhow for the beginning a very simple model base approach is used to predict the non-ego vehicle position, velocity and lane at the time the ego vehicle can execute the 
-new waypoints. With a low effort we got so a quite robust prediction for most use-cases of our highway pilot. Left out are prediction of other cars lane changes.
-To improve this, in the further a Hybrid Naive-Bayes approach could be used.
+new waypoints. With a low effort we got so a quite robust prediction for most use-cases of our highway pilot.
 
 ### Velocity Calculation 
 in line 403:
