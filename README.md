@@ -190,7 +190,7 @@ by taking the lane speed into account. So the cost becomes higher for trajectori
 * **proposed_speed_final**:    Last line speed 
 * **car.target_speed**:        Target Speed. In our case 49.5mph
 
-in `Cost.cpp`file, line `81`.
+Line `81` in `Cost.cpp`file.
  ```c
 float cost = (2.0 * car.target_speed - proposed_speed_intended - proposed_speed_final) / car.target_speed;
 ```
