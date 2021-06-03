@@ -28,9 +28,8 @@ Overview
 
 ## Intro Behavior Planer
 In self-driving  cars behavior selection, is on of the most of the most challenging topics.
-Simplified, the topic is **what to do next**? And not on this minute level of what  exact control input to give a steering wheel but more of a macroscopic level
-whether it's a left or right or change lanes of a highway or take an exit. So a Finite Sate Machine, that govern the complex behavior of a 
-self driving car. 
+Simplified, the topic is **what to do next**? And not on a minute level of what  exact control input to give a to steering wheel but more of a macroscopic level
+whether it's a left or right or change lanes of a highway or take an exit.
 
 *Personal Note, after you understand a "Behavior Planer" you will never look at you own drive skill the same level as before*
 
