@@ -155,7 +155,7 @@ next state with the cost functions.
  <img src="./readme_data/finite_state_machine_2.png" width="360" alt="finite_state_machine_2" />
  <figcaption>
  <p></p> 
- <p style="text-align: center;"> Fig. 3.3: Finite State of this Project. </p> 
+ <p style="text-align: center;"> Fig. 3.3: Finite State Machine of this Project. </p> 
  </figcaption>
 </figure>
  <p></p>
