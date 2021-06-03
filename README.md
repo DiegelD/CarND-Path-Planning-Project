@@ -107,8 +107,8 @@ will change lanes so that our Planner would be more robust
 A great analogy for the Behavior Planner is that it inherent the responsibility of a navigator on the passenger seat. 
 It gives the commands where to go and when to change lanes.
 However the navigator is not responsible for the safety and maneuver execution.<br/>
-To bring the Planner alive, two big parts are need: One is a **State Machine** that tells wichs maneuvers we should take and the
-other are **Cost functions** that tell which is the best next possible trajectory.
+To bring the Planner alive, two big parts are needed: One is a **State Machine** that govern the complex behavior of the self driving car
+and the other one are **Cost functions** that tell which is the best possible next behavior.
 
 
 <figure>
