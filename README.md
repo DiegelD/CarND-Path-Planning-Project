@@ -139,6 +139,17 @@ best next state.
 </figure>
  <p></p>
 
+<figure>
+ <img src="./readme_data/finite_state_machine_2.png" width="360" alt="finite_state_machine_2" />
+ <figcaption>
+ <p></p> 
+ <p style="text-align: center;"> Fig. 3.3: Finite State of this Project. </p> 
+ </figcaption>
+</figure>
+ <p></p>
+
+As visualization the *FSM* with its possible transitions of this project is drawn in Fig. 3.3.
+
 For a better readability the code is not described here in detail. However feel free to look into the code, comments are made there 
 to increase the understanding. 
 
