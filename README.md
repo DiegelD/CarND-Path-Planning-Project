@@ -204,7 +204,7 @@ cost = 1 - 2 * exp(-(abs(delta_d) / distance));
 #### Off Road Cost (Safety)
 During the development stage, the ego car left the desired path to drive off road. Since there is never traffic jam and the ego
 car can drive with max speed. To penalize this behavior 
-all paths that will leave the road will get and enormous cost.
+all paths that are leaving the road are getting an enormous cost.
 
 * lane_max: Are the lanes that allowed to drive 
 
