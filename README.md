@@ -202,7 +202,8 @@ int delta_d = 2.0 * car.goal_lane - data["intended_lane"] - data["final_lane"];
 cost = 1 - 2 * exp(-(abs(delta_d) / distance));
 ```
 #### Off Road Cost (Safety)
-During the development stage, the ego car left the desired path to drive off road. Since there is never traffic jam. To penalize this behavior 
+During the development stage, the ego car left the desired path to drive off road. Since there is never traffic jam and the ego
+car can drive with max speed. To penalize this behavior 
 all paths that will leave the road will get and enormous cost.
 
 * lane_max: Are the lanes that allowed to drive 
