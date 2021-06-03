@@ -144,7 +144,7 @@ discrete states. In the Image below is an overview of the shematic work of a *FS
 * **LCR**: Lane Change Right
 
 Any pair can be connected by one or more transitions. So from the *KL* its possible to transition to *PLCL/PCLR* and from there to *Lane Change*
-or back to *KP*, if transition is not possible due to a vehicle at the other lane. The *LCL/LCR* states only transition back to *KP*.
+or back to *KL*, if transition is not possible due to a vehicle at the other lane. The *LCL/LCR* states only transition back to *KL*.
 The vector of possible trajectories is handelt by the function `successor_states` line `92` in the `Car.cpp` file and is the input for the *FSM*.
 
 
