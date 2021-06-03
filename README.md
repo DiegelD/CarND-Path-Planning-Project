@@ -301,7 +301,8 @@ double max_velocity_accel_limit = this->max_acceleration + this->v;
 The next line is pretty nice. The velocity is calculated based on the distance of the front car. So we can ensure 
 that both conditions, velocity and distance are adapted for the ego car. So for example if the distance to the car in front is high, 
 the velocity of the ego car will be higher than the front cars velocity.
-And transition linear with a decreasing distance until a minimum distance is reached and our car is adapting 1:1 the velocity of the front car. 
+And transition linear with a decreasing distance until a minimum distance is reached and our car is adapting 1:1 the velocity of the front car with a 
+a certain distance. 
 Line `196`.
 ```c
 double max_velocity_in_front = (vehicle_ahead.s - this->s - this->preferred_buffer) + vehicle_ahead.v - 0.5 * (this->a);
