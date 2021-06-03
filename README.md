@@ -167,14 +167,14 @@ to increase the understanding.
 Designing cost functions is difficult and to bring them to cooperate and to produce reasonable vehicle behavior is hard.
 Some of the challenges are to solve problems, without unsolving old ones.
 
-In general there are there possibilities to handle and solve cost function problems:
+In general there are three possibilities to handle and solve cost function problems:
 * Modifying the exciting cost functions
 * Adding new cost functions
 * Tweaking the weights. 
 
-Cost functions by it self are designed to variety the output between 1 and -1 so that the tuning can be done bye the weights
-line `17` in the `Cost.cpp` file.
-
+Cost functions by it self are designed to variety the output between 1 and -1 so that the tuning can be done
+by the multiplying these outputs with weights. A desired behavior is reached with following weights:
+Line `17` in the `Cost.cpp` file.
 ```c
 const float REACH_GOAL = pow(10, 1);
 const float EFFICIENCY = pow(10, 4);
