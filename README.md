@@ -24,7 +24,7 @@ Overview
 3. Behavior Planer
 4. Trajectory planer
 5. Discussion
-6. Appendix: Build Instructions & Simulator ...
+6. Appendix: *Build Instructions & Simulator* ...
 
 ## Intro Behavior Planer
 In self-driving  cars behavior selection, is on of the most of the most challenging topics. Where the topics is, 
