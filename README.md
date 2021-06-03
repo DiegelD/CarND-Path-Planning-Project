@@ -27,7 +27,7 @@ Overview
 6. Appendix: *Build Instructions & Simulator* ...
 
 ## Intro Behavior Planner
-In self-driving  cars behavior selection, is on of the most of challenging topics.
+In self-driving  cars behavior selection, is on of the most challenging topics.
 Simplified, the topic is **what to do next**? And not on a minute level of what  exact control input to give a to steering wheel but more of a macroscopic level
 whether it's a left or right or change lanes of a highway or take an exit.
 
