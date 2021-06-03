@@ -233,7 +233,7 @@ in `Cost.cpp`line `111`.
 #### Change Lange Cost (Comfort)
 An other problem during the development occurred. Sometimes the ego vehicle toggled between the lanes, because other lanes had
 a brief marginal velocity advantage. 
-To sophisticated the lane change behavior on traffic jam situations so that the lane change just takes place if a real advantage occur.  
+To sophisticated the lane change behavior on traffic jam situations so that the lane change just happen if a real advantage occur, this function got introduced. 
 
 line `146` in `Cost.cpp`.
 ```c
