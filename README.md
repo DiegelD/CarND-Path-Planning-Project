@@ -190,10 +190,10 @@ of the goal lane also becomes larger as the vehicle approaches the goal. This en
 s
 ![equation](https://latex.codecogs.com/gif.image?\dpi{130}&space;cost=1-e^{-\frac{\left&space;|&space;\Delta&space;d&space;\right|}{\Delta&space;s})
 
-* Intended lane: the intended lane for the given behavior. For *PLCR*, *PLCL*, *LCR*, and *LCL*, this would be the one lane over from the current lane.
-* Final lane: the immediate resulting lane of the given behavior. For *LCR* and *LCL*, this would be one lane over.
-* Δs distance to the goal.
-* The goal lane.
+* **Intended lane**: the intended lane for the given behavior. For *PLCR*, *PLCL*, *LCR*, and *LCL*, this would be the one lane over from the current lane.
+* **Final lane**: the immediate resulting lane of the given behavior. For *LCR* and *LCL*, this would be one lane over.
+* **Δs** distance to the goal.
+* The **goal lane**.
 
 
 in `Cost.cpp`line `42 & 46`.
