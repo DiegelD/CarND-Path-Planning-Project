@@ -173,7 +173,7 @@ In general there are three possibilities to handle and solve cost function probl
 * Tweaking the weights. 
 
 Cost functions by it self are designed to variety the output between 1 and -1 so that the tuning can be done
-by the multiplying these outputs with weights. A desired behavior is reached with following weights:
+by multiplying these outputs with weights. A desired behavior is reached with following weights:
 Line `17` in the `Cost.cpp` file.
 ```c
 const float REACH_GOAL = pow(10, 1);
