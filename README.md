@@ -240,7 +240,7 @@ A trajectory is not just a curve the car can follow, but also a time sequence in
 In finding trajectories are many imported things out to watch for. The most imported on is **"don`t crash"**.  But also passages comfort, 
 the lateral and longitudinal acceleration and jerk is imported. So the challenge here is to make it as smooth and elegant as possible.
 
-So the challenge is to find a feasible path as sequence of movements in the configuration space. ( The space defines all the possible configurations, in 3D this is x,y, theta.)
+The biggest challenge is to find a feasible path as sequence of movements in the configuration space. ( The space defines all the possible configurations, in 3D this is x,y, theta.)
 That moves the car from the actual position, defined by localization and sensors to the end position, desired from the behavior planner
 and considers all the comfort requirement. In the image below is the general motion planning problem described.
 
