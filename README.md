@@ -122,7 +122,7 @@ and the other one are **Cost Functions** that tells which is the best possible n
 ### 3.1 Finite State Machine
 A Finite State Machine (*FSM*) is a way to solve the [Behavior Planning Problem](https://www.cs.cmu.edu/afs/cs/project/jair/pub/volume9/mazer98a-html/node2.html).
 It gets as input several possible next trajectories and based on a transition function it makes decisions on a finite set of
-discrete states. In the Image below is an overview of the schematic work of a *FSM*.
+discrete states. In the image below is an overview of the schematic work of a *FSM*.
 
 <figure>
  <img src="./readme_data/finite_state_machine.png" width="360" alt="finite_state_machine" />
