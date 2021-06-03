@@ -103,12 +103,12 @@ To improve this in the further a Hybrid Naive-Bayes approach could be used, so t
 will change lanes so that our Planner would be more robust
 
 
-## 3) Behavior Planner / Cost functions 
+## 3) Behavior Planner / Cost Functions 
 A great analogy for the Behavior Planner is that it inherent the responsibility of a navigator on the passenger seat. 
 It gives the commands where to go and when to change lanes.
 However the navigator is not responsible for the safety and maneuver execution.<br/>
 To bring the Planner alive, two big parts are needed: One is a **State Machine** that govern the complex behavior of the self driving car
-and the other one are **Cost functions** that tells which is the best possible next behavior.
+and the other one are **Cost Functions** that tells which is the best possible next behavior.
 
 <figure>
  <img src="./readme_data/behaviour_planning_overview.png" width="360" alt="Behavior Planning Overview" />
@@ -163,7 +163,7 @@ best next state.
 As visualization, the *FSM* with its possible transitions of this project is drawn in Fig. 3.3. For a better readability the code is not described here in detail. However feel free to look into the code, comments are made there 
 to increase the understanding. 
 
-### 3.2 Cost functions
+### 3.2 Cost Functions
 Designing cost functions is difficult and to bring them to cooperate and to produce reasonable vehicle behavior is hard.
 Some of the challenges are to solve problems, without unsolving old ones. To ensure this in general are regression test are used,
 which is part of developing safety critical software.
