@@ -31,7 +31,7 @@ In self-driving  cars behavior selection, is on of the most challenging topics.
 Simplified, the topic is **what to do next**? And not on a minute level of what  exact control input to give a to steering wheel but more of a macroscopic level
 whether it's a left or right or change lanes of a highway or take an exit.
 
-*Personal Note, after you understand a "Behavior Planer" you will never look at you own drive skill the same level as before*
+*Personal Note, after you understand a "Behavior Planner" you will never look at you own drive skill the same level as before*
 
 **What functionalities belog to a Behavior Planner and what is a Path Planner**? 
 The figure below shows the full interactions of a Behavior Planner with all its belonging functionality, control flows and the update times. 
