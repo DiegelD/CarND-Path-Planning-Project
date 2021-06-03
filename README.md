@@ -27,7 +27,7 @@ Overview
 6. Build Instructions & Simulator & Additional Information from Udacity
 
 ## Intro Behavior Planer
-In self-driving  cars behavior selection, is on of the most of the most challenging topics. Where the topic is, 
+In self-driving  cars behavior selection, is on of the most of the most challenging topics. Where the topics is, 
 what to do next? And not on this minute level of what  exact control input to give a steering wheel but more of a macroscopic level
 whether it's a left or right or change lanes of a highway or take an exit. So a Finite Sate Machine, that govern the complex behavior of a 
 self driving car. 
@@ -177,9 +177,9 @@ const float LANECHANGE = pow(10, 2) * 3;
 The single most imported cost function. 
 The cost becomes higher for trajectories with *intended lane* and *final lane*, that have traffic slower than traget speed.
 
-* proposed_speed_intended: Intended line speed
-* proposed_speed_final:    Last line speed 
-* car.target_speed:        Target Speed. In our case 49.5mph
+* **proposed_speed_intended**: Intended line speed
+* **proposed_speed_final**:    Last line speed 
+* **car.target_speed**:        Target Speed. In our case 49.5mph
 
 in `Cost.cpp`line `81`.
  ```c
