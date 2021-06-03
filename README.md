@@ -207,7 +207,7 @@ of the goal lane also becomes larger as the vehicle approaches the goal. This en
 * The **goal lane**.
 
 
-in `Cost.cpp`line `42 & 46`.
+Line `42 & 46` in `Cost.cpp`.
  ```c
 int delta_d = 2.0 * car.goal_lane - data["intended_lane"] - data["final_lane"];
 cost = 1 - 2 * exp(-(abs(delta_d) / distance));
@@ -235,7 +235,7 @@ An other problem during the development occurred. Sometimes the ego vehicle togg
 a brief marginal velocity advantage. 
 To sophisticated the lane change behavior on traffic jam situations so that the lane change just happen if a real advantage occur, this function got introduced. 
 
-line `146` in `Cost.cpp`.
+Line `146` in `Cost.cpp`.
 ```c
   if ((data["intended_lane"] <= car.lane_max) && (data["intended_lane"] >= car.lane_min))
   {
@@ -249,13 +249,13 @@ line `146` in `Cost.cpp`.
 
 ## 4) Trajectory Planner
 A trajectory is not just a curve the car can follow, but also a time sequence in which we say how fast the car should go.
-In finding trajectories are many imported things out to watch for. The most imported on is **"don`t crash"**.  But also passages comfort, 
+In finding trajectories are many imported things out to watch for. The most imported on is **"don`t crash"**.  But also passenger comfort, 
 the lateral and longitudinal acceleration and jerk is imported. So the challenge here is to make it as smooth and elegant as possible.
 
 The biggest challenge is to find a feasible path as sequence of movements in the configuration space. ( The space defines all the possible configurations, in 3D this is x,y, theta.)
 That moves the car from the actual position, defined by localization and sensors to the end position, desired from the behavior planner
-and considers all the comfort requirement. In the image below is the general motion planning problem described.
-
+and considers all the comfort requirement. In the image below is the general[motion planning problem](https://en.wikipedia.org/wiki/Motion_planning).
+described
 
 <figure>
  <img src="./readme_data/motion_planing_problem.png" width="360" alt="motion_planing_problem" />
