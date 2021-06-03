@@ -206,7 +206,7 @@ During the development stage, the ego car left the desired path to drive off roa
 car can drive with max speed. To penalize this behavior 
 all paths that are leaving the road are getting an enormous cost.
 
-* **lane_max**: Are the lanes that allowed to drive 
+* **lane_max**: Are the lanes that allowed to drive.
 
 in `Cost.cpp`line `111`.
 ```c
@@ -220,8 +220,8 @@ in `Cost.cpp`line `111`.
   }
 ```
 #### Change Lange Cost (Comfort)
-An other problem during the development occur. The ego vehicle changed wildly the lane, because other lanes hat a marginal velocity advantages. 
-To avoid this behavior and just change the lanes due to a greater velocity advantage this function got introduced.  
+An other problem during the development occur. Sometimes the ego vehicle changed wildly the lanes, because other lanes hat a marginal velocity advantage. 
+To avoid this permanent lane change behavior on traffic jam situations and just change the lanes due to a greater velocity advantage this function got introduced.  
 
 in `Cost.cpp`line `146`.
 ```c
