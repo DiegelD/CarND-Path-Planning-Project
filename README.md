@@ -281,18 +281,18 @@ all part of the free space have to be explored to find a solution. Examples here
  <p></p>
 
 -> In a more structured environment like the highway situation we can also take algorithms that have less computational effort.
-So there would be the [Polynomial Trajectory Generation](https://www.researchgate.net/profile/Moritz-Werling/publication/224156269_Optimal_Trajectory_Generation_for_Dynamic_Street_Scenarios_in_a_Frenet_Frame/links/54f749df0cf210398e9277af/Optimal-Trajectory-Generation-for-Dynamic-Street-Scenarios-in-a-Frenet-Frame.pdf)
-or in this project the divide and rule principle is used. So The problem is splitter into the comfort part
-velocity, Acceleration, Jerk and crash control and into trajectory creation and lateral control.
+Like the [Polynomial Trajectory Generation](https://www.researchgate.net/profile/Moritz-Werling/publication/224156269_Optimal_Trajectory_Generation_for_Dynamic_Street_Scenarios_in_a_Frenet_Frame/links/54f749df0cf210398e9277af/Optimal-Trajectory-Generation-for-Dynamic-Street-Scenarios-in-a-Frenet-Frame.pdf)
+algorithm, or in this project the divide and rule principle is used. So that the problem is splitter into two main problems. The comfort part:
+velocity, acceleration, jerk and crash control and into trajectory creation and lateral control.
 
 #### 4.1 Velocity, Acceleration (+/-), Jerk and Crash Control
-The following codes are necessary for a traffic adapted trajectory generation. Before choosing the best next state with the cost function, 
+The following slices of code are necessary for a traffic adapted trajectory generation. Before choosing the best next state with the cost function, 
 the possible next states condition gets validated. 
 So in the function `get kinematics` file `Car.cpp` depending on the current conditions and the non-ego vehicle conditions the further traffic adapted trajectory states are set.
 
 ##### Velocity and distance control
 To control the velocity and max. acceleration of the vehicle some pretty nice and simple calculations are used in the following. 
-On the first step the new max velocity is set to ensure a comfortable max. acceleration and deceleration. The variable `max_acceleration` with a actual vale 0f 0.224
+On the first step the new max velocity is set to ensure a comfortable max. acceleration and deceleration. The variable `max_acceleration` with a actual value 0f 0.224
 ensures a change rate of max. `10m/s^2`.
 Line `162s`.
 ```c
