@@ -33,8 +33,11 @@ whether it's a left or right or change lanes of a highway or take an exit.
 
 *Personal Note, after you understand a "Behavior Planer" you will never look at you own drive skill the same level as before*
 
-The figure below shows the full interactions of a Behavior Planer. With the control flows and the update times. The green box marks the area the is commonly knowns as Path-Planner. To enable me to focus just on this topic, all the other functions outside the box are provided by Udacity and 
-briefly described in chapter 5.
+What functionalities belog to a Behavior Planer and what is a Path Planner? 
+The figure below shows the full interactions of a Behavior Planer with all its belonging functionality, control flows and the update times. 
+The green box marks the area that is commonly knowns as Path-Planner. This is the focus of this project. To enable me to focus on 
+this topic, all the other functions outside the Path Planner are provided by Udacity and 
+briefly described in the Appendix.
 
 <figure>
  <img src="./readme_data/BC_overview.png" width="360" alt="BehaviourControl" />
