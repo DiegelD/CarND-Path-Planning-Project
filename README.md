@@ -306,14 +306,14 @@ Line `196`.
 ```c
 double max_velocity_in_front = (vehicle_ahead.s - this->s - this->preferred_buffer) + vehicle_ahead.v - 0.5 * (this->a);
 ```
-And to ensure that none of this values exits the boundaries this smart line of code is introduced in line `200`.
+And to ensure that none of this values exits the boundaries this line of code is introduced in line `200`.
 ```c
 new_velocity = std::min(std::min(max_velocity_in_front,
                                  max_velocity_accel_limit),
                                        this->target_speed);
 ```
 ##### Crash control at lane change
-Before executing the Lane Change the following check is done in line `309`. And if a car is detected in the area of lane change, 
+**Before** executing Lane Changes the following check is done in line `309`. And if a car is detected in the area of lane change, 
 the execution is denied.
 ```c
 if (((next_lane_vehicle.s > (this->s - 10)) && ((next_lane_vehicle.s - this->s) < 20)) && next_lane_vehicle.lane == new_lane)
