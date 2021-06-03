@@ -164,7 +164,7 @@ For a better readability the code is **not** described here in detail! However f
 to increase the understanding. 
 
 ### 3.2 Cost Functions
-Designing cost functions is difficult and to bring them to cooperate and to produce reasonable vehicle behavior is hard.
+Designing cost functions is difficult and to bring them to cooperate and to produce a reasonable vehicle behavior is hard.
 Some of the challenges are to solve problems, without unsolving old ones.
 
 In general there are three possibilities to handle and solve cost function problems:
@@ -183,8 +183,8 @@ const float LANECHANGE = pow(10, 2) * 3;
 ```
 
 #### Inefficiency Cost (Target Efficiency)
-The single most imported cost function. 
-The cost becomes higher for trajectories with *intended lane* and *final lane*, that have traffic slower than traget speed.
+The single most imported cost function for an optimized lane change behavior. It calculates the cost for the desired path
+by taking the lane speed into account. So the cost becomes higher for trajectories that have a traffic slower than the traget speed.
 
 * **proposed_speed_intended**: Intended line speed
 * **proposed_speed_final**:    Last line speed 
@@ -194,6 +194,7 @@ in `Cost.cpp`line `81`.
  ```c
 float cost = (2.0 * car.target_speed - proposed_speed_intended - proposed_speed_final) / car.target_speed;
 ```
+
 #### Distance to goal (Comfort/ Feasibility)
 The cost increases with both the distance of intended lane from the goal and the distance of the final lane from the goal. The cost of being out 
 of the goal lane also becomes larger as the vehicle approaches the goal. This ensures that the vehicle is in the right lane by reaching the goal.
