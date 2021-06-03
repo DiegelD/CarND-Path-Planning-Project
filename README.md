@@ -231,7 +231,7 @@ in `Cost.cpp`line `111`.
   }
 ```
 #### Change Lange Cost (Comfort)
-An other problem during the development occur. Sometimes the ego vehicle changed wildly the lanes, because other lanes had
+An other problem during the development occured. Sometimes the ego vehicle changed wildly the lanes, because other lanes had
 a marginal velocity advantage. 
 To sophisticated the lane change behavior on traffic jam situations and just change the lanes due to a greater velocity advantage this function got introduced.  
 
