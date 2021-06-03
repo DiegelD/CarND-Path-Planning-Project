@@ -147,8 +147,8 @@ Any pair can be connected by one or more transitions. So from the *KL* its possi
 or back to *KL*, if transition is not possible due to a vehicle at the other lane. The *LCL/LCR* states can only transition back to *KL*.
 In figure 3.3 you can see the project specific *FSM* behavior.
 
-The function `successor_states` line `92` in the `Car.cpp` file  creates the input as possible next trajectories for the *FSM*
-and the transition transitions function **Chose next state** in line `43` handles the shifts between the states by calculating the best
+The function `successor_states` line `92` in the `Car.cpp` file, creates the input as possible next trajectories for the *FSM*
+and the transition function **Chose next state** in line `43` handles the shifts between the states by calculating the best
 next state with the cost functions.
 
 <figure>
@@ -160,13 +160,12 @@ next state with the cost functions.
 </figure>
  <p></p>
 
-For a better readability the code is **not** described here in detail. However feel free to look into the code, comments are made there 
+For a better readability the code is **not** described here in detail! However feel free to look into the code, comments are made there 
 to increase the understanding. 
 
 ### 3.2 Cost Functions
 Designing cost functions is difficult and to bring them to cooperate and to produce reasonable vehicle behavior is hard.
-Some of the challenges are to solve problems, without unsolving old ones. To ensure this in general are regression test are used,
-which is part of developing safety critical software.
+Some of the challenges are to solve problems, without unsolving old ones.
 
 In general there are there possibilities to handle and solve cost function problems:
 * Modifying the exciting cost functions
