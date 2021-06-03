@@ -128,7 +128,7 @@ discrete states. In the Image below is an overview of the shematic work of a *FS
  <img src="./readme_data/finite_state_machine.png" width="360" alt="finite_state_machine" />
  <figcaption>
  <p></p> 
- <p style="text-align: center;"> Fig. 3.2: Example Finite State Overview. </p> 
+ <p style="text-align: center;"> Fig. 3.2: Example, Finite State Overview. </p> 
  </figcaption>
 </figure>
  <p></p>
@@ -151,15 +151,6 @@ Seen in the example of a *FSM* in the image below.
 
 The transition between the states is handled by a transitions function, called **Chose next state** line `43` in the `Car.cpp` file . Wich takes the input and calculates with the cost-functions the 
 best next state. 
-<figure>
- <img src="./readme_data/finite_state_machine.png" width="360" alt="finite_state_machine" />
- <figcaption>
- <p></p> 
- <p style="text-align: center;"> Fig. 3.2: Example Finite State Overview. </p> 
- </figcaption>
-</figure>
- <p></p>
-
 <figure>
  <img src="./readme_data/finite_state_machine_2.png" width="360" alt="finite_state_machine_2" />
  <figcaption>
