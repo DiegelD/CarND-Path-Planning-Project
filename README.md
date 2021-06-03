@@ -147,7 +147,7 @@ best next state.
  <p style="text-align: center;"> Fig. 3.3: Finite State of this Project. </p> 
  </figcaption>
 </figure>
- <p></p>s
+ <p></p>
 
 As visualization, the *FSM* with its possible transitions of this project is drawn in Fig. 3.3. For a better readability the code is not described here in detail. However feel free to look into the code, comments are made there 
 to increase the understanding. 
@@ -206,7 +206,7 @@ During the development stage, the ego car left the desired path to drive off roa
 car can drive with max speed. To penalize this behavior 
 all paths that are leaving the road are getting an enormous cost.
 
-* lane_max: Are the lanes that allowed to drive 
+* **lane_max**: Are the lanes that allowed to drive 
 
 in `Cost.cpp`line `111`.
 ```c
