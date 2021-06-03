@@ -60,14 +60,14 @@ Prediction is done in general ether **model based** or **data driven** based. La
  <img src="./readme_data/prediction_flow.png" width="360" alt="BehaviourControl" />
  <figcaption>
  <p></p> 
- <p style="text-align: center;"> Fig. 2: Predication: Up inherntly multi-modal prediction. Down predication flow. </p> 
+ <p style="text-align: center;"> Fig. 2: Prediction: Up inherntly multi-modal prediction. Down prediction flow. </p> 
  </figcaption>
 </figure>
  <p></p>
 
-The second image shows the control flow of a general prediction function. Also our prediction function **generate_predictions** in `Car.cpp` file gets the same inputs. 
+The second image shows the control flow of a general prediction function. Also our function **generate_predictions** in `Car.cpp` file gets the same inputs. 
 Anyhow for the beginning a very simple model base approach is used to predict the non-ego vehicle position, velocity and lane at the time the ego vehicle can execute the 
-new waypoints. With a low effort we got so a quite robust predication for most use-cases of our highway pilot. Left out are predication of other cars lane changes.
+new waypoints. With a low effort we got so a quite robust prediction for most use-cases of our highway pilot. Left out are prediction of other cars lane changes.
 To improve this, in the further a Hybrid Naive-Bayes approach could be used.
 
 ### Velocity calculation 
@@ -79,7 +79,7 @@ in line 403:
 ```c
 double check_speed = sqrt(vx * vx + vy * vy);
 ```
-### Position predication 
+### Position prediction 
 in line 407:
  
 * prev_size:  represents the waypoint for the ego vehicle that are queuing. 
