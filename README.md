@@ -4,7 +4,7 @@ Self-Driving Car Engineer Nanodegree Program
 
 ![](./readme_data/Behavior_Planner.gif)
 
-## Conclusion
+## Abstract
 In the following you will find the development of an **intelligent highway pilot**.
 That performs optimized lane changing, means the car only changes into a lane that improves its forward progress.
 
@@ -31,7 +31,7 @@ whether it's a left or right or change lanes of a highway or take an exit.
 The figure below shows the full interactions of a Behavior Planner with all its belonging functionality, control flows and the update times. 
 The green box marks the area that is commonly knowns as Path-Planner. This is the focus of this project. To enable me to focus on 
 this, all the other functions outside the Path Planner are provided by Udacity and 
-briefly described in the Appendix.
+briefly described in the appendix.
 
 <figure>
  <img src="./readme_data/BC_overview.png" width="360" alt="BehaviourControl" />
@@ -45,7 +45,7 @@ briefly described in the Appendix.
 ## 2) Prediction
 What makes predictions interesting but also but also challenging is its inherently multi-multimodality. Means 
 for example where will be a non ego car in the next 5ms (Figure 2 first image).
-Prediction is done in general ether **model based** or **data driven** based. Lately also Hybride approaches occurred.
+Prediction is done in general ether **model based** or **data driven** based. Lately also hybride approaches occurred.
 * Model based approaches uses mathematical models to predict the trajectories.
 * Data driven approaches relay on machine learning an examples to learn from. 
 
@@ -82,9 +82,10 @@ in line 407:
  check_car_s += ((double)prev_size * .02 * check_speed);
 ```
 ### Lane Prediction:
-The lane prediction, is actually a calculation of the current lane. This is done by taking the `d` distance from the non-ego vehicle to the highway center
-into account. And subtracting out of this the lane wides of 4m. In addition we assuming all cars are driving in the center of the lane (lane/2 = 2m). *So one example would be then 
-that if the d = 6m. The car have to be in the middle lane. Lane wide 4m + 2m center lane = 6m.* 
+The lane prediction, is actually a calculation of the current lane. This is done by taking the `d` distance from 
+the non-ego vehicle to the highway center into accountand. And subtracting out of this the lane wides of 4m. 
+In addition we assuming all cars are driving in the center of the lane (lane/2 = 2m). *So one example would be then 
+that if the d = 6m, the car have to be in the middle lane. Lane wide 4m + 2m center lane = 6m.* 
 
 line `393`:
 ```c
@@ -93,7 +94,7 @@ vector<int> predicted_lane{0,1,2};
 if (d < (2 + 4 * predicted_lane[j] + 2) && d > (2 + 4 * predicted_lane[j] - 2))
 ```
 **Left out** of the current prediction are other cars lane changes.
-To improve this in the further a Hybrid Naive-Bayes approach could be used, so that we could also predict when a non-ego car 
+To improve this in the further a hybrid Naive-Bayes approach could be used, so that we could also predict when a non-ego car 
 will change lanes so that our Planner would be more robust
 
 
@@ -141,7 +142,7 @@ Any pair can be connected by one or more transitions. So from the *KL* its possi
 or back to *KL*, if transition is not possible due to a vehicle at the other lane. The *LCL/LCR* states can only transition back to *KL*.
 In figure 3.3 you can see the project specific *FSM* behavior.
 
-The function `successor_states` line `92` in the `Car.cpp` file, creates the input as possible next trajectories for the *FSM*
+The function `successor_states` line `92` in the `Car.cpp` file, creates the input as possible next trajectories states sfor the *FSM*.
 and the transition function **Chose next state** in line `43` handles the shifts between the states by calculating the best
 next state with the cost functions.
 
@@ -243,8 +244,8 @@ Line `146` in `Cost.cpp`.
 
 ## 4) Trajectory Planner
 A trajectory is not just a curve the car can follow, but also a time sequence in which we say how fast the car should go.
-In finding trajectories are many imported things out to watch for. The most imported on is **"don`t crash"**.  But also passenger comfort, 
-the lateral and longitudinal acceleration and jerk is imported. So the challenge here is to make it as smooth and elegant as possible.
+In finding trajectories are many imported things out to watch for. The most imported one is **"don`t crash"**.  But also passenger comfort, 
+the lateral and longitudinal acceleration and jerk is important. So the challenge here is to make it as smooth and elegant as possible.
 
 The biggest challenge is to find a feasible path as sequence of movements in the configuration space. ( The space defines all the possible configurations, in 3D this is x,y, theta.)
 That moves the car from the actual position, defined by localization and sensors to the end position, desired from the behavior planner
