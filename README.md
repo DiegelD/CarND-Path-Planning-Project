@@ -12,10 +12,12 @@ Self-Driving Car Engineer Nanodegree Program
  <p></p>
 
 ## Conclusion
-In the following you will find the development of an **intelligent high way pilot**.
+In the following you will find the development of an **intelligent highway pilot**.
 That performs optimized lane changing, means the car only changes into a lane that improves its forward progress.
 
  *In the following are some highlights of the project described. For deeper, wider more detailed insights feel free to check the code that speaks for itself*.
+
+Watch here the Planner in [action](https://youtu.be/qC0Bk1E7Hy8W).
 
 Overview
 ---
