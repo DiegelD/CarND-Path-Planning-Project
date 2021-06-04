@@ -2,14 +2,7 @@
 Self-Driving Car Engineer Nanodegree Program
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
-<figure>
- <img src="./examples/ScreenShot_1.jpg" width="830" alt="data amout plot" />
- <figcaption>
- <p></p> 
- <p style="text-align: center;"> Fig: Autonomous Drive in the Simulator</p> 
- </figcaption>
-</figure>
- <p></p>
+![](Behavior_Planner.gif)
 
 ## Conclusion
 In the following you will find the development of an **intelligent highway pilot**.
